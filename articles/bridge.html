@@ -79,15 +79,264 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/frbcesab/bridge" class="external-link">"bridge"</a></span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">quadrat_per_site</span> <span class="op">&lt;-</span> <span class="fl">5</span>
+<code class="sourceCode R"><span class="co">## Create fake dataset with two sites and 5 quadrats in each ----</span>
+<span class="va">quadrat_per_site</span> <span class="op">&lt;-</span> <span class="fl">5</span>
 <span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"site"</span>    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"S1"</span>, <span class="va">quadrat_per_site</span><span class="op">)</span>,
                                 <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"S2"</span>, <span class="va">quadrat_per_site</span><span class="op">)</span><span class="op">)</span>,
-                  <span class="st">"quadrat"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"AD0"</span>, <span class="fl">1</span><span class="op">:</span><span class="va">quadrat_per_site</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/recode_units.html">recode_units</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span>
-
+                  <span class="st">"quadrat"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"AD0"</span>, <span class="fl">1</span><span class="op">:</span><span class="va">quadrat_per_site</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<table class="table">
+<caption>Fake dataset</caption>
+<thead><tr class="header">
+<th align="center">site</th>
+<th align="center">quadrat</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">S1</td>
+<td align="center">AD01</td>
+</tr>
+<tr class="even">
+<td align="center">S1</td>
+<td align="center">AD02</td>
+</tr>
+<tr class="odd">
+<td align="center">S1</td>
+<td align="center">AD03</td>
+</tr>
+<tr class="even">
+<td align="center">S1</td>
+<td align="center">AD04</td>
+</tr>
+<tr class="odd">
+<td align="center">S1</td>
+<td align="center">AD05</td>
+</tr>
+<tr class="even">
+<td align="center">S2</td>
+<td align="center">AD01</td>
+</tr>
+<tr class="odd">
+<td align="center">S2</td>
+<td align="center">AD02</td>
+</tr>
+<tr class="even">
+<td align="center">S2</td>
+<td align="center">AD03</td>
+</tr>
+<tr class="odd">
+<td align="center">S2</td>
+<td align="center">AD04</td>
+</tr>
+<tr class="even">
+<td align="center">S2</td>
+<td align="center">AD05</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Create a unique key (site and quadrat combination) ----</span>
+<span class="va">tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/recode_units.html">recode_units</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span></code></pre></div>
+<table class="table">
+<caption>Fake dataset with unique key</caption>
+<thead><tr class="header">
+<th align="center">site</th>
+<th align="center">quadrat</th>
+<th align="center">key</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">S1</td>
+<td align="center">AD01</td>
+<td align="center">S1__AD01</td>
+</tr>
+<tr class="even">
+<td align="center">S1</td>
+<td align="center">AD02</td>
+<td align="center">S1__AD02</td>
+</tr>
+<tr class="odd">
+<td align="center">S1</td>
+<td align="center">AD03</td>
+<td align="center">S1__AD03</td>
+</tr>
+<tr class="even">
+<td align="center">S1</td>
+<td align="center">AD04</td>
+<td align="center">S1__AD04</td>
+</tr>
+<tr class="odd">
+<td align="center">S1</td>
+<td align="center">AD05</td>
+<td align="center">S1__AD05</td>
+</tr>
+<tr class="even">
+<td align="center">S2</td>
+<td align="center">AD01</td>
+<td align="center">S2__AD01</td>
+</tr>
+<tr class="odd">
+<td align="center">S2</td>
+<td align="center">AD02</td>
+<td align="center">S2__AD02</td>
+</tr>
+<tr class="even">
+<td align="center">S2</td>
+<td align="center">AD03</td>
+<td align="center">S2__AD03</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Number of neighbors to consider (both in upstream and downstream directions) ----</span>
 <span class="va">level</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 
+<span class="co">## Identify links between edges (unique key) ----</span>
+<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_links.html">make_links</a></span><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="st">"key"</span>, level <span class="op">=</span> <span class="va">level</span><span class="op">)</span></code></pre></div>
+<table class="table">
+<caption>Adjacency data frame</caption>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="center">from</th>
+<th align="center">to</th>
+<th align="center">weight</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="center">S1__AD01</td>
+<td align="center">S1__AD01</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="center">S1__AD01</td>
+<td align="center">S1__AD02</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="center">S1__AD01</td>
+<td align="center">S1__AD03</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="center">S1__AD01</td>
+<td align="center">S1__AD04</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="left">8</td>
+<td align="center">S1__AD01</td>
+<td align="center">S1__AD05</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="center">S1__AD01</td>
+<td align="center">S2__AD01</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="left">7</td>
+<td align="center">S1__AD01</td>
+<td align="center">S2__AD02</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="center">S1__AD01</td>
+<td align="center">S2__AD03</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Convert data frame to adjacency matrix ----</span>
+<span class="co">## (remove diagonal and upper triangle)</span>
+<span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/df_to_matrix.html">df_to_matrix</a></span><span class="op">(</span><span class="va">dat</span>, diag <span class="op">=</span> <span class="cn">FALSE</span>, upper <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">#&gt;          S1__AD01 S1__AD02 S1__AD03 S1__AD04 S1__AD05 S2__AD01 S2__AD02</span>
+<span class="co">#&gt; S1__AD01       NA       NA       NA       NA       NA       NA       NA</span>
+<span class="co">#&gt; S1__AD02        1       NA       NA       NA       NA       NA       NA</span>
+<span class="co">#&gt; S1__AD03        0        1       NA       NA       NA       NA       NA</span>
+<span class="co">#&gt; S1__AD04        0        0        1       NA       NA       NA       NA</span>
+<span class="co">#&gt; S1__AD05        0        0        0        1       NA       NA       NA</span>
+<span class="co">#&gt; S2__AD01        0        0        0        0        1       NA       NA</span>
+<span class="co">#&gt; S2__AD02        0        0        0        0        0        1       NA</span>
+<span class="co">#&gt; S2__AD03        0        0        0        0        0        0        1</span>
+<span class="co">#&gt; S2__AD04        0        0        0        0        0        0        0</span>
+<span class="co">#&gt; S2__AD05        0        0        0        0        0        0        0</span>
+<span class="co">#&gt;          S2__AD03 S2__AD04 S2__AD05</span>
+<span class="co">#&gt; S1__AD01       NA       NA       NA</span>
+<span class="co">#&gt; S1__AD02       NA       NA       NA</span>
+<span class="co">#&gt; S1__AD03       NA       NA       NA</span>
+<span class="co">#&gt; S1__AD04       NA       NA       NA</span>
+<span class="co">#&gt; S1__AD05       NA       NA       NA</span>
+<span class="co">#&gt; S2__AD01       NA       NA       NA</span>
+<span class="co">#&gt; S2__AD02       NA       NA       NA</span>
+<span class="co">#&gt; S2__AD03       NA       NA       NA</span>
+<span class="co">#&gt; S2__AD04        1       NA       NA</span>
+<span class="co">#&gt; S2__AD05        0        1       NA</span></code></pre>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Convert back adjacency matrix to data frame ----</span>
+<span class="co">## (tricks to remove diagonal and upper links)</span>
+<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/matrix_to_df.html">matrix_to_df</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">#&gt;        from       to weight</span>
+<span class="co">#&gt; 11 S1__AD02 S1__AD01      1</span>
+<span class="co">#&gt; 21 S1__AD03 S1__AD01      0</span>
+<span class="co">#&gt; 22 S1__AD03 S1__AD02      1</span>
+<span class="co">#&gt; 31 S1__AD04 S1__AD01      0</span>
+<span class="co">#&gt; 32 S1__AD04 S1__AD02      0</span>
+<span class="co">#&gt; 33 S1__AD04 S1__AD03      1</span>
+<span class="co">#&gt; 41 S1__AD05 S1__AD01      0</span>
+<span class="co">#&gt; 42 S1__AD05 S1__AD02      0</span>
+<span class="co">#&gt; 43 S1__AD05 S1__AD03      0</span>
+<span class="co">#&gt; 44 S1__AD05 S1__AD04      1</span>
+<span class="co">#&gt; 51 S2__AD01 S1__AD01      0</span>
+<span class="co">#&gt; 52 S2__AD01 S1__AD02      0</span>
+<span class="co">#&gt; 53 S2__AD01 S1__AD03      0</span>
+<span class="co">#&gt; 54 S2__AD01 S1__AD04      0</span>
+<span class="co">#&gt; 55 S2__AD01 S1__AD05      1</span>
+<span class="co">#&gt; 61 S2__AD02 S1__AD01      0</span>
+<span class="co">#&gt; 62 S2__AD02 S1__AD02      0</span>
+<span class="co">#&gt; 63 S2__AD02 S1__AD03      0</span>
+<span class="co">#&gt; 64 S2__AD02 S1__AD04      0</span>
+<span class="co">#&gt; 65 S2__AD02 S1__AD05      0</span>
+<span class="co">#&gt; 66 S2__AD02 S2__AD01      1</span>
+<span class="co">#&gt; 71 S2__AD03 S1__AD01      0</span>
+<span class="co">#&gt; 72 S2__AD03 S1__AD02      0</span>
+<span class="co">#&gt; 73 S2__AD03 S1__AD03      0</span>
+<span class="co">#&gt; 74 S2__AD03 S1__AD04      0</span>
+<span class="co">#&gt; 75 S2__AD03 S1__AD05      0</span>
+<span class="co">#&gt; 76 S2__AD03 S2__AD01      0</span>
+<span class="co">#&gt; 77 S2__AD03 S2__AD02      1</span>
+<span class="co">#&gt; 81 S2__AD04 S1__AD01      0</span>
+<span class="co">#&gt; 82 S2__AD04 S1__AD02      0</span>
+<span class="co">#&gt; 83 S2__AD04 S1__AD03      0</span>
+<span class="co">#&gt; 84 S2__AD04 S1__AD04      0</span>
+<span class="co">#&gt; 85 S2__AD04 S1__AD05      0</span>
+<span class="co">#&gt; 86 S2__AD04 S2__AD01      0</span>
+<span class="co">#&gt; 87 S2__AD04 S2__AD02      0</span>
+<span class="co">#&gt; 88 S2__AD04 S2__AD03      1</span>
+<span class="co">#&gt; 91 S2__AD05 S1__AD01      0</span>
+<span class="co">#&gt; 92 S2__AD05 S1__AD02      0</span>
+<span class="co">#&gt; 93 S2__AD05 S1__AD03      0</span>
+<span class="co">#&gt; 94 S2__AD05 S1__AD04      0</span>
+<span class="co">#&gt; 95 S2__AD05 S1__AD05      0</span>
+<span class="co">#&gt; 96 S2__AD05 S2__AD01      0</span>
+<span class="co">#&gt; 97 S2__AD05 S2__AD02      0</span>
+<span class="co">#&gt; 98 S2__AD05 S2__AD03      0</span>
+<span class="co">#&gt; 99 S2__AD05 S2__AD04      1</span></code></pre>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Plot the network with igraph ----</span>
+<span class="va">net</span> <span class="op">&lt;-</span> <span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html" class="external-link">graph.data.frame</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="va">dat</span><span class="op">$</span><span class="st">"weight"</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span>, directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">net</span>, layout <span class="op">=</span> <span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/merge_coords.html" class="external-link">layout_components</a></span><span class="op">(</span><span class="va">net</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Neighbors"</span>, <span class="va">level</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="bridge_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">level</span> <span class="op">&lt;-</span> <span class="fl">2</span>
+
 <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_links.html">make_links</a></span><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="st">"key"</span>, level <span class="op">=</span> <span class="va">level</span><span class="op">)</span>
 <span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/df_to_matrix.html">df_to_matrix</a></span><span class="op">(</span><span class="va">dat</span>, diag <span class="op">=</span> <span class="cn">FALSE</span>, upper <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/matrix_to_df.html">matrix_to_df</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span>
@@ -95,19 +344,8 @@
 <span class="va">net</span> <span class="op">&lt;-</span> <span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html" class="external-link">graph.data.frame</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="va">dat</span><span class="op">$</span><span class="st">"weight"</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span>, directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">net</span>, layout <span class="op">=</span> <span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/merge_coords.html" class="external-link">layout_components</a></span><span class="op">(</span><span class="va">net</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Neighbors"</span>, <span class="va">level</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="bridge_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">level</span> <span class="op">&lt;-</span> <span class="fl">2</span>
-
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_links.html">make_links</a></span><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="st">"key"</span>, level <span class="op">=</span> <span class="va">level</span><span class="op">)</span>
-<span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/df_to_matrix.html">df_to_matrix</a></span><span class="op">(</span><span class="va">dat</span>, diag <span class="op">=</span> <span class="cn">FALSE</span>, upper <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/matrix_to_df.html">matrix_to_df</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span>
-
-<span class="va">net</span> <span class="op">&lt;-</span> <span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html" class="external-link">graph.data.frame</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="va">dat</span><span class="op">$</span><span class="st">"weight"</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span>, directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">net</span>, layout <span class="op">=</span> <span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/merge_coords.html" class="external-link">layout_components</a></span><span class="op">(</span><span class="va">net</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Neighbors"</span>, <span class="va">level</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="bridge_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<p><img src="bridge_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">level</span> <span class="op">&lt;-</span> <span class="fl">3</span>
 
 <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_links.html">make_links</a></span><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="st">"key"</span>, level <span class="op">=</span> <span class="va">level</span><span class="op">)</span>
@@ -117,8 +355,8 @@
 <span class="va">net</span> <span class="op">&lt;-</span> <span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html" class="external-link">graph.data.frame</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="va">dat</span><span class="op">$</span><span class="st">"weight"</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span>, directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">net</span>, layout <span class="op">=</span> <span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/merge_coords.html" class="external-link">layout_components</a></span><span class="op">(</span><span class="va">net</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Neighbors"</span>, <span class="va">level</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="bridge_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<p><img src="bridge_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">level</span> <span class="op">&lt;-</span> <span class="fl">4</span>
 
 <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_links.html">make_links</a></span><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="st">"key"</span>, level <span class="op">=</span> <span class="va">level</span><span class="op">)</span>
@@ -128,8 +366,8 @@
 <span class="va">net</span> <span class="op">&lt;-</span> <span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html" class="external-link">graph.data.frame</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="va">dat</span><span class="op">$</span><span class="st">"weight"</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span>, directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">net</span>, layout <span class="op">=</span> <span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/merge_coords.html" class="external-link">layout_components</a></span><span class="op">(</span><span class="va">net</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Neighbors"</span>, <span class="va">level</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="bridge_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<p><img src="bridge_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">level</span> <span class="op">&lt;-</span> <span class="fl">5</span>
 
 <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_links.html">make_links</a></span><span class="op">(</span><span class="va">tab</span><span class="op">$</span><span class="st">"key"</span>, level <span class="op">=</span> <span class="va">level</span><span class="op">)</span>
@@ -139,7 +377,7 @@
 <span class="va">net</span> <span class="op">&lt;-</span> <span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html" class="external-link">graph.data.frame</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span><span class="va">dat</span><span class="op">$</span><span class="st">"weight"</span> <span class="op">==</span> <span class="fl">1</span>, <span class="op">]</span>, directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">net</span>, layout <span class="op">=</span> <span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/merge_coords.html" class="external-link">layout_components</a></span><span class="op">(</span><span class="va">net</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Neighbors"</span>, <span class="va">level</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="bridge_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p><img src="bridge_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
