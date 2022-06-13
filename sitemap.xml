@@ -22,9 +22,21 @@
     <loc>/reference/bridge-package.html</loc>
   </url>
   <url>
+    <loc>/reference/char_to_int.html</loc>
+  </url>
+  <url>
+    <loc>/reference/df_to_matrix.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/print_msg.html</loc>
+    <loc>/reference/make_links.html</loc>
+  </url>
+  <url>
+    <loc>/reference/matrix_to_df.html</loc>
+  </url>
+  <url>
+    <loc>/reference/recode_units.html</loc>
   </url>
 </urlset>
