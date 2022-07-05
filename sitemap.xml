@@ -19,6 +19,9 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/reference/adjacency_table.html</loc>
+  </url>
+  <url>
     <loc>/reference/bridge-package.html</loc>
   </url>
   <url>
@@ -35,9 +38,6 @@
   </url>
   <url>
     <loc>/reference/line_to_points.html</loc>
-  </url>
-  <url>
-    <loc>/reference/make_links.html</loc>
   </url>
   <url>
     <loc>/reference/matrix_to_df.html</loc>
