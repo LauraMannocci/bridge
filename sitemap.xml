@@ -28,13 +28,25 @@
     <loc>/reference/df_to_matrix.html</loc>
   </url>
   <url>
+    <loc>/reference/distance_along.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/line_to_points.html</loc>
   </url>
   <url>
     <loc>/reference/make_links.html</loc>
   </url>
   <url>
     <loc>/reference/matrix_to_df.html</loc>
+  </url>
+  <url>
+    <loc>/reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>/reference/points_to_line.html</loc>
   </url>
   <url>
     <loc>/reference/recode_units.html</loc>
