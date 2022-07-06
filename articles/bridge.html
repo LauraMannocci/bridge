@@ -91,18 +91,12 @@
 </ul>
 <p>First let’s load the <strong>Adour river</strong> layer:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Path to the example layer ----</span></span>
+<code class="sourceCode R"><span><span class="co"># Load the spatial layer of Adour river ----</span></span>
+<span><span class="va">path_to_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"adour_lambert93.gpkg"</span>, </span>
+<span>                            package <span class="op">=</span> <span class="st">"bridge"</span><span class="op">)</span></span>
+<span><span class="va">adour_river</span>  <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="va">path_to_file</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">path_to_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"adour_lambert93.gpkg"</span>, package <span class="op">=</span> <span class="st">"bridge"</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="co">## Load the spatial layer ----</span></span>
-<span></span>
-<span><span class="va">adour_river</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="va">path_to_file</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="co">## Preview ----</span></span>
-<span></span>
+<span><span class="co"># Preview ----</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">adour_river</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 1 feature and 1 field</span></span>
 <span><span class="co">#&gt; Geometry type: LINESTRING</span></span>
@@ -112,24 +106,18 @@
 <span><span class="co">#&gt;   river_name                           geom</span></span>
 <span><span class="co">#&gt; 1    L'Adour LINESTRING (480886.8 620722...</span></span>
 <span></span>
-<span></span>
-<span><span class="co">## Map ----</span></span>
-<span></span>
+<span><span class="co"># Map ----</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_river</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"The French river Adour"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="va">custom_theme</span></span></code></pre></div>
+<span>  <span class="fu">custom_theme</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="bridge_files/figure-html/load-adour-river-1.png" width="100%"></p>
 <p>Now, let’s load the sites around the Adour:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Path to the example dataset ----</span></span>
-<span></span>
-<span><span class="va">path_to_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"adour_sites_coords.rds"</span>, package <span class="op">=</span> <span class="st">"bridge"</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="co">## Load the data.frame ----</span></span>
-<span></span>
-<span><span class="va">adour_sites</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="va">path_to_file</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## Load the dataset of sites ----</span></span>
+<span><span class="va">path_to_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"adour_sites_coords.csv"</span>, </span>
+<span>                            package <span class="op">=</span> <span class="st">"bridge"</span><span class="op">)</span></span>
+<span><span class="va">adour_sites</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">path_to_file</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Sites along Adour</caption>
 <thead><tr class="header">
@@ -139,52 +127,52 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="center">Site_01</td>
+<td align="center">S-01</td>
 <td align="right">470911.2</td>
 <td align="right">6219515</td>
 </tr>
 <tr class="even">
-<td align="center">Site_02</td>
+<td align="center">S-02</td>
 <td align="right">466841.1</td>
 <td align="right">6231099</td>
 </tr>
 <tr class="odd">
-<td align="center">Site_03</td>
+<td align="center">S-03</td>
 <td align="right">464962.6</td>
 <td align="right">6242684</td>
 </tr>
 <tr class="even">
-<td align="center">Site_04</td>
+<td align="center">S-04</td>
 <td align="right">466215.0</td>
 <td align="right">6252389</td>
 </tr>
 <tr class="odd">
-<td align="center">Site_05</td>
+<td align="center">S-05</td>
 <td align="right">464023.4</td>
 <td align="right">6266791</td>
 </tr>
 <tr class="even">
-<td align="center">Site_06</td>
+<td align="center">S-06</td>
 <td align="right">458701.0</td>
 <td align="right">6284011</td>
 </tr>
 <tr class="odd">
-<td align="center">Site_07</td>
+<td align="center">S-07</td>
 <td align="right">445238.4</td>
 <td align="right">6291838</td>
 </tr>
 <tr class="even">
-<td align="center">Site_08</td>
+<td align="center">S-08</td>
 <td align="right">434593.6</td>
 <td align="right">6302169</td>
 </tr>
 <tr class="odd">
-<td align="center">Site_09</td>
+<td align="center">S-09</td>
 <td align="right">418626.3</td>
 <td align="right">6306239</td>
 </tr>
 <tr class="even">
-<td align="center">Site_10</td>
+<td align="center">S-10</td>
 <td align="right">379177.9</td>
 <td align="right">6304048</td>
 </tr>
@@ -192,20 +180,17 @@
 </table>
 <p>Let’s convert this <code>data.frame</code> into an <code>sf</code> object of type <code>POINT</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Convert data.frame to sf object ----</span></span>
-<span></span>
+<code class="sourceCode R"><span><span class="co"># Convert data.frame to sf object ----</span></span>
 <span><span class="va">adour_sites_sf</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">adour_sites</span>, coords <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">3</span>, crs <span class="op">=</span> <span class="st">"epsg:2154"</span><span class="op">)</span></span>
 <span></span>
-<span></span>
-<span><span class="co">## Map ----</span></span>
-<span></span>
+<span><span class="co"># Map ----</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_river</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_sites_sf</span>, shape <span class="op">=</span> <span class="fl">19</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggsflabel</span><span class="fu">::</span><span class="fu"><a href="https://yutannihilation.github.io/ggsflabel/reference/geom_sf_label.html" class="external-link">geom_sf_label</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_sites_sf</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">site</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">4.5</span>, </span>
 <span>                           nudge_x <span class="op">=</span> <span class="op">-</span><span class="fl">7500</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Sites along the French river Adour"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="va">custom_theme</span></span></code></pre></div>
+<span>  <span class="fu">custom_theme</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="bridge_files/figure-html/df-to-sf-1.png" width="100%"></p>
 </div>
 <div class="section level2">
@@ -213,19 +198,16 @@
 </h2>
 <p>From the sites labels, we will create an adjacency table based on a degree <strong>1</strong> of neighborhood. This means that a site is linked to the first next site (upstream) and also to the first previous site (downstream).</p>
 <p><strong>Important:</strong> as the sites have a direction (along the Adour river, from upstream to downstream), the order of the sites must be found in the sites labels.</p>
-<p>For instance, in our dataset, the sites are labelled as <strong>Site_01</strong>, <strong>Site_02</strong>, …, <strong>Site_10</strong>. This means that the most upstream site is <strong>Site_01</strong> and the most downstream is <strong>Site_10</strong>.</p>
+<p>For instance, in our dataset, the sites are labelled as <strong>S-01</strong>, <strong>S-02</strong>, …, <strong>S-10</strong>. This means that the most upstream site is <strong>S-01</strong> and the most downstream is <strong>S-10</strong>.</p>
 <p>But be aware that ordering characters can have some unwanted effects, especially if they contain numbers.</p>
 <p>For instance,</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Alphanumerical ordering ----</span></span>
-<span></span>
+<code class="sourceCode R"><span><span class="co"># Alphanumerical ordering ----</span></span>
 <span><span class="va">sites</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span> <span class="st">"s1"</span>,  <span class="st">"s2"</span>, <span class="st">"s11"</span>, <span class="st">"s10"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">sites</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "s1"  "s10" "s11" "s2"</span></span>
 <span></span>
-<span></span>
-<span><span class="co">## Natural ordering ----</span></span>
-<span></span>
+<span><span class="co"># Natural ordering ----</span></span>
 <span><span class="va">sites</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"s01"</span>, <span class="st">"s02"</span>, <span class="st">"s11"</span>, <span class="st">"s10"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">sites</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "s01" "s02" "s10" "s11"</span></span></code></pre></div>
@@ -233,8 +215,7 @@
 <p><br></p>
 <p>Let’s create this adjacency table with the function <code><a href="../reference/adjacency_table.html">bridge::adjacency_table()</a></code></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Create adjacency table (degree 1 of neighborhood) ----</span></span>
-<span></span>
+<code class="sourceCode R"><span><span class="co"># Create adjacency table (degree 1 of neighborhood) ----</span></span>
 <span><span class="va">adj_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/adjacency_table.html">adjacency_table</a></span><span class="op">(</span><span class="va">adour_sites</span><span class="op">$</span><span class="st">"site"</span>, level <span class="op">=</span> <span class="fl">1</span>, self <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Adjacency table of degree 1 of neighborhood</caption>
@@ -245,143 +226,145 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="center">Site_01</td>
-<td align="center">Site_01</td>
+<td align="center">S-01</td>
+<td align="center">S-01</td>
 <td align="center">0</td>
 </tr>
 <tr class="even">
-<td align="center">Site_01</td>
-<td align="center">Site_02</td>
+<td align="center">S-01</td>
+<td align="center">S-02</td>
 <td align="center">1</td>
 </tr>
 <tr class="odd">
-<td align="center">Site_01</td>
-<td align="center">Site_03</td>
+<td align="center">S-01</td>
+<td align="center">S-03</td>
 <td align="center">0</td>
 </tr>
 <tr class="even">
-<td align="center">Site_01</td>
-<td align="center">Site_04</td>
+<td align="center">S-01</td>
+<td align="center">S-04</td>
 <td align="center">0</td>
 </tr>
 <tr class="odd">
-<td align="center">Site_01</td>
-<td align="center">Site_05</td>
+<td align="center">S-01</td>
+<td align="center">S-05</td>
 <td align="center">0</td>
 </tr>
 <tr class="even">
-<td align="center">Site_01</td>
-<td align="center">Site_06</td>
+<td align="center">S-01</td>
+<td align="center">S-06</td>
 <td align="center">0</td>
 </tr>
 <tr class="odd">
-<td align="center">Site_01</td>
-<td align="center">Site_07</td>
+<td align="center">S-01</td>
+<td align="center">S-07</td>
 <td align="center">0</td>
 </tr>
 <tr class="even">
-<td align="center">Site_01</td>
-<td align="center">Site_08</td>
+<td align="center">S-01</td>
+<td align="center">S-08</td>
 <td align="center">0</td>
 </tr>
 <tr class="odd">
-<td align="center">Site_01</td>
-<td align="center">Site_09</td>
+<td align="center">S-01</td>
+<td align="center">S-09</td>
 <td align="center">0</td>
 </tr>
 <tr class="even">
-<td align="center">Site_01</td>
-<td align="center">Site_10</td>
+<td align="center">S-01</td>
+<td align="center">S-10</td>
 <td align="center">0</td>
 </tr>
 <tr class="odd">
-<td align="center">Site_02</td>
-<td align="center">Site_01</td>
+<td align="center">S-02</td>
+<td align="center">S-01</td>
 <td align="center">1</td>
 </tr>
 <tr class="even">
-<td align="center">Site_02</td>
-<td align="center">Site_02</td>
+<td align="center">S-02</td>
+<td align="center">S-02</td>
 <td align="center">0</td>
 </tr>
 <tr class="odd">
-<td align="center">Site_02</td>
-<td align="center">Site_03</td>
+<td align="center">S-02</td>
+<td align="center">S-03</td>
 <td align="center">1</td>
 </tr>
 <tr class="even">
-<td align="center">Site_02</td>
-<td align="center">Site_04</td>
+<td align="center">S-02</td>
+<td align="center">S-04</td>
 <td align="center">0</td>
 </tr>
 <tr class="odd">
-<td align="center">Site_02</td>
-<td align="center">Site_05</td>
+<td align="center">S-02</td>
+<td align="center">S-05</td>
 <td align="center">0</td>
 </tr>
 <tr class="even">
-<td align="center">Site_02</td>
-<td align="center">Site_06</td>
+<td align="center">S-02</td>
+<td align="center">S-06</td>
 <td align="center">0</td>
 </tr>
 <tr class="odd">
-<td align="center">Site_02</td>
-<td align="center">Site_07</td>
+<td align="center">S-02</td>
+<td align="center">S-07</td>
 <td align="center">0</td>
 </tr>
 <tr class="even">
-<td align="center">Site_02</td>
-<td align="center">Site_08</td>
+<td align="center">S-02</td>
+<td align="center">S-08</td>
 <td align="center">0</td>
 </tr>
 <tr class="odd">
-<td align="center">Site_02</td>
-<td align="center">Site_09</td>
+<td align="center">S-02</td>
+<td align="center">S-09</td>
 <td align="center">0</td>
 </tr>
 <tr class="even">
-<td align="center">Site_02</td>
-<td align="center">Site_10</td>
+<td align="center">S-02</td>
+<td align="center">S-10</td>
 <td align="center">0</td>
 </tr>
 <tr class="odd">
-<td align="center">Site_03</td>
-<td align="center">Site_01</td>
+<td align="center">S-03</td>
+<td align="center">S-01</td>
 <td align="center">0</td>
 </tr>
 <tr class="even">
-<td align="center">Site_03</td>
-<td align="center">Site_02</td>
+<td align="center">S-03</td>
+<td align="center">S-02</td>
 <td align="center">1</td>
 </tr>
 <tr class="odd">
-<td align="center">Site_03</td>
-<td align="center">Site_03</td>
+<td align="center">S-03</td>
+<td align="center">S-03</td>
 <td align="center">0</td>
 </tr>
 <tr class="even">
-<td align="center">Site_03</td>
-<td align="center">Site_04</td>
+<td align="center">S-03</td>
+<td align="center">S-04</td>
 <td align="center">1</td>
 </tr>
 <tr class="odd">
-<td align="center">Site_03</td>
-<td align="center">Site_05</td>
+<td align="center">S-03</td>
+<td align="center">S-05</td>
 <td align="center">0</td>
 </tr>
 </tbody>
 </table>
 <p>We can convert this table to an adjacency matrix with function <code><a href="../reference/df_to_matrix.html">bridge::df_to_matrix()</a></code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Convert data frame to adjacency matrix ----</span></span>
+<code class="sourceCode R"><span><span class="co"># Convert data.frame to adjacency matrix ----</span></span>
+<span><span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/df_to_matrix.html">df_to_matrix</a></span><span class="op">(</span><span class="va">adj_table</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/df_to_matrix.html">df_to_matrix</a></span><span class="op">(</span><span class="va">adj_table</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt;         Site_01 Site_02 Site_03 Site_04 Site_05</span></span>
-<span><span class="co">#&gt; Site_01       0       1       0       0       0</span></span>
-<span><span class="co">#&gt; Site_02       1       0       1       0       0</span></span>
-<span><span class="co">#&gt; Site_03       0       1       0       1       0</span></span>
-<span><span class="co">#&gt; Site_04       0       0       1       0       1</span></span>
-<span><span class="co">#&gt; Site_05       0       0       0       1       0</span></span></code></pre>
+<span><span class="co"># Preview ----</span></span>
+<span><span class="va">mat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
+<span><span class="co">#&gt;      S-01 S-02 S-03 S-04 S-05</span></span>
+<span><span class="co">#&gt; S-01    0    1    0    0    0</span></span>
+<span><span class="co">#&gt; S-02    1    0    1    0    0</span></span>
+<span><span class="co">#&gt; S-03    0    1    0    1    0</span></span>
+<span><span class="co">#&gt; S-04    0    0    1    0    1</span></span>
+<span><span class="co">#&gt; S-05    0    0    0    1    0</span></span></code></pre></div>
 </div>
   </div>
 
