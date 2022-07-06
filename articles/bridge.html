@@ -66,8 +66,7 @@
 
       
 
-      </header><script src="bridge_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="bridge_files/kePrint-0.0.1/kePrint.js"></script><link href="bridge_files/lightable-0.0.1/lightable.css" rel="stylesheet">
-<div class="row">
+      </header><script src="bridge_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Get started</h1>
@@ -122,131 +121,63 @@
 <span><span class="va">path_to_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"adour_sites_coords.csv"</span>, </span>
 <span>                            package <span class="op">=</span> <span class="st">"bridge"</span><span class="op">)</span></span>
 <span><span class="va">adour_sites</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">path_to_file</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="margin-left: auto; margin-right: auto;">
-<caption>
-Sites along Adour
-</caption>
-<thead><tr>
-<th style="text-align:center;">
-site
-</th>
-<th style="text-align:right;">
-longitude
-</th>
-<th style="text-align:right;">
-latitude
-</th>
+<table class="table">
+<caption>Sites along Adour</caption>
+<thead><tr class="header">
+<th align="center">site</th>
+<th align="right">longitude</th>
+<th align="right">latitude</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:center;">
-S-01
-</td>
-<td style="text-align:right;">
-470911.2
-</td>
-<td style="text-align:right;">
-6219515
-</td>
+<tr class="odd">
+<td align="center">S-01</td>
+<td align="right">470911.2</td>
+<td align="right">6219515</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-S-02
-</td>
-<td style="text-align:right;">
-466841.1
-</td>
-<td style="text-align:right;">
-6231099
-</td>
+<tr class="even">
+<td align="center">S-02</td>
+<td align="right">466841.1</td>
+<td align="right">6231099</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-S-03
-</td>
-<td style="text-align:right;">
-464962.6
-</td>
-<td style="text-align:right;">
-6242684
-</td>
+<tr class="odd">
+<td align="center">S-03</td>
+<td align="right">464962.6</td>
+<td align="right">6242684</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-S-04
-</td>
-<td style="text-align:right;">
-466215.0
-</td>
-<td style="text-align:right;">
-6252389
-</td>
+<tr class="even">
+<td align="center">S-04</td>
+<td align="right">466215.0</td>
+<td align="right">6252389</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-S-05
-</td>
-<td style="text-align:right;">
-464023.4
-</td>
-<td style="text-align:right;">
-6266791
-</td>
+<tr class="odd">
+<td align="center">S-05</td>
+<td align="right">464023.4</td>
+<td align="right">6266791</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-S-06
-</td>
-<td style="text-align:right;">
-458701.0
-</td>
-<td style="text-align:right;">
-6284011
-</td>
+<tr class="even">
+<td align="center">S-06</td>
+<td align="right">458701.0</td>
+<td align="right">6284011</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-S-07
-</td>
-<td style="text-align:right;">
-445238.4
-</td>
-<td style="text-align:right;">
-6291838
-</td>
+<tr class="odd">
+<td align="center">S-07</td>
+<td align="right">445238.4</td>
+<td align="right">6291838</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-S-08
-</td>
-<td style="text-align:right;">
-434593.6
-</td>
-<td style="text-align:right;">
-6302169
-</td>
+<tr class="even">
+<td align="center">S-08</td>
+<td align="right">434593.6</td>
+<td align="right">6302169</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-S-09
-</td>
-<td style="text-align:right;">
-418626.3
-</td>
-<td style="text-align:right;">
-6306239
-</td>
+<tr class="odd">
+<td align="center">S-09</td>
+<td align="right">418626.3</td>
+<td align="right">6306239</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-S-10
-</td>
-<td style="text-align:right;">
-379177.9
-</td>
-<td style="text-align:right;">
-6304048
-</td>
+<tr class="even">
+<td align="center">S-10</td>
+<td align="right">379177.9</td>
+<td align="right">6304048</td>
 </tr>
 </tbody>
 </table>
@@ -289,276 +220,122 @@ S-10
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># List of edges with degree 1 of neighborhood ----</span></span>
 <span><span class="va">adour_edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/edges_list.html">edges_list</a></span><span class="op">(</span>nodes  <span class="op">=</span> <span class="va">adour_sites</span><span class="op">$</span><span class="st">"site"</span>, degree <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="margin-left: auto; margin-right: auto;">
-<caption>
-Adjacency table of degree 1 of neighborhood
-</caption>
-<thead><tr>
-<th style="text-align:center;">
-edge_id
-</th>
-<th style="text-align:center;">
-edge
-</th>
-<th style="text-align:center;">
-from
-</th>
-<th style="text-align:center;">
-to
-</th>
+<table class="table">
+<caption>Adjacency table of degree 1 of neighborhood</caption>
+<thead><tr class="header">
+<th align="center">edge_id</th>
+<th align="center">edge</th>
+<th align="center">from</th>
+<th align="center">to</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:center;">
-E-1
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-S-01
-</td>
-<td style="text-align:center;">
-S-02
-</td>
+<tr class="odd">
+<td align="center">E-1</td>
+<td align="center">1</td>
+<td align="center">S-01</td>
+<td align="center">S-02</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-E-1
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-S-02
-</td>
-<td style="text-align:center;">
-S-01
-</td>
+<tr class="even">
+<td align="center">E-1</td>
+<td align="center">1</td>
+<td align="center">S-02</td>
+<td align="center">S-01</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-E-2
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-S-02
-</td>
-<td style="text-align:center;">
-S-03
-</td>
+<tr class="odd">
+<td align="center">E-2</td>
+<td align="center">1</td>
+<td align="center">S-02</td>
+<td align="center">S-03</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-E-2
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-S-03
-</td>
-<td style="text-align:center;">
-S-02
-</td>
+<tr class="even">
+<td align="center">E-2</td>
+<td align="center">1</td>
+<td align="center">S-03</td>
+<td align="center">S-02</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-E-3
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-S-03
-</td>
-<td style="text-align:center;">
-S-04
-</td>
+<tr class="odd">
+<td align="center">E-3</td>
+<td align="center">1</td>
+<td align="center">S-03</td>
+<td align="center">S-04</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-E-3
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-S-04
-</td>
-<td style="text-align:center;">
-S-03
-</td>
+<tr class="even">
+<td align="center">E-3</td>
+<td align="center">1</td>
+<td align="center">S-04</td>
+<td align="center">S-03</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-E-4
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-S-04
-</td>
-<td style="text-align:center;">
-S-05
-</td>
+<tr class="odd">
+<td align="center">E-4</td>
+<td align="center">1</td>
+<td align="center">S-04</td>
+<td align="center">S-05</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-E-4
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-S-05
-</td>
-<td style="text-align:center;">
-S-04
-</td>
+<tr class="even">
+<td align="center">E-4</td>
+<td align="center">1</td>
+<td align="center">S-05</td>
+<td align="center">S-04</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-E-5
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-S-05
-</td>
-<td style="text-align:center;">
-S-06
-</td>
+<tr class="odd">
+<td align="center">E-5</td>
+<td align="center">1</td>
+<td align="center">S-05</td>
+<td align="center">S-06</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-E-5
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-S-06
-</td>
-<td style="text-align:center;">
-S-05
-</td>
+<tr class="even">
+<td align="center">E-5</td>
+<td align="center">1</td>
+<td align="center">S-06</td>
+<td align="center">S-05</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-E-6
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-S-06
-</td>
-<td style="text-align:center;">
-S-07
-</td>
+<tr class="odd">
+<td align="center">E-6</td>
+<td align="center">1</td>
+<td align="center">S-06</td>
+<td align="center">S-07</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-E-6
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-S-07
-</td>
-<td style="text-align:center;">
-S-06
-</td>
+<tr class="even">
+<td align="center">E-6</td>
+<td align="center">1</td>
+<td align="center">S-07</td>
+<td align="center">S-06</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-E-7
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-S-07
-</td>
-<td style="text-align:center;">
-S-08
-</td>
+<tr class="odd">
+<td align="center">E-7</td>
+<td align="center">1</td>
+<td align="center">S-07</td>
+<td align="center">S-08</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-E-7
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-S-08
-</td>
-<td style="text-align:center;">
-S-07
-</td>
+<tr class="even">
+<td align="center">E-7</td>
+<td align="center">1</td>
+<td align="center">S-08</td>
+<td align="center">S-07</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-E-8
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-S-08
-</td>
-<td style="text-align:center;">
-S-09
-</td>
+<tr class="odd">
+<td align="center">E-8</td>
+<td align="center">1</td>
+<td align="center">S-08</td>
+<td align="center">S-09</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-E-8
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-S-09
-</td>
-<td style="text-align:center;">
-S-08
-</td>
+<tr class="even">
+<td align="center">E-8</td>
+<td align="center">1</td>
+<td align="center">S-09</td>
+<td align="center">S-08</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-E-9
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-S-09
-</td>
-<td style="text-align:center;">
-S-10
-</td>
+<tr class="odd">
+<td align="center">E-9</td>
+<td align="center">1</td>
+<td align="center">S-09</td>
+<td align="center">S-10</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-E-9
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-S-10
-</td>
-<td style="text-align:center;">
-S-09
-</td>
+<tr class="even">
+<td align="center">E-9</td>
+<td align="center">1</td>
+<td align="center">S-10</td>
+<td align="center">S-09</td>
 </tr>
 </tbody>
 </table>
