@@ -216,10 +216,10 @@
 <span><span class="co">#&gt; [1] "s01" "s02" "s10" "s11"</span></span></code></pre></div>
 <p>You may want to code your sites as in the second example, i.e. based on a Natural ordering.</p>
 <p><br></p>
-<p>Let’s create this adjacency table with the function <code><a href="../reference/adjacency_table.html">bridge::adjacency_table()</a></code></p>
+<p>Let’s create this adjacency table with the function <code><a href="../reference/edges_list.html">bridge::edges_list()</a></code></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Create adjacency table (degree 1 of neighborhood) ----</span></span>
-<span><span class="va">adj_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/adjacency_table.html">adjacency_table</a></span><span class="op">(</span><span class="va">adour_sites</span><span class="op">$</span><span class="st">"site"</span>, level <span class="op">=</span> <span class="fl">1</span>, self <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># List of edges with degree 1 of neighborhood ----</span></span>
+<span><span class="va">adj_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/edges_list.html">edges_list</a></span><span class="op">(</span><span class="va">adour_sites</span><span class="op">$</span><span class="st">"site"</span>, level <span class="op">=</span> <span class="fl">1</span>, self <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Adjacency table of degree 1 of neighborhood</caption>
 <thead><tr class="header">

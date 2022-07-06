@@ -25,19 +25,22 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/adjacency_table.html</loc>
-  </url>
-  <url>
     <loc>/reference/bridge-package.html</loc>
   </url>
   <url>
     <loc>/reference/char_to_int.html</loc>
   </url>
   <url>
+    <loc>/reference/create_unique_key.html</loc>
+  </url>
+  <url>
     <loc>/reference/df_to_matrix.html</loc>
   </url>
   <url>
     <loc>/reference/distance_along.html</loc>
+  </url>
+  <url>
+    <loc>/reference/edges_list.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
@@ -53,8 +56,5 @@
   </url>
   <url>
     <loc>/reference/points_to_line.html</loc>
-  </url>
-  <url>
-    <loc>/reference/recode_units.html</loc>
   </url>
 </urlset>
