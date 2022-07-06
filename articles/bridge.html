@@ -219,156 +219,127 @@
 <p>Let’s create this adjacency table with the function <code><a href="../reference/edges_list.html">bridge::edges_list()</a></code></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># List of edges with degree 1 of neighborhood ----</span></span>
-<span><span class="va">adj_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/edges_list.html">edges_list</a></span><span class="op">(</span>nodes  <span class="op">=</span> <span class="va">adour_sites</span><span class="op">$</span><span class="st">"site"</span>, </span>
-<span>                        degree <span class="op">=</span> <span class="fl">1</span>, self <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">adour_edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/edges_list.html">edges_list</a></span><span class="op">(</span>nodes  <span class="op">=</span> <span class="va">adour_sites</span><span class="op">$</span><span class="st">"site"</span>, degree <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Adjacency table of degree 1 of neighborhood</caption>
 <thead><tr class="header">
-<th align="center">from</th>
-<th align="center">to</th>
+<th align="center">edge_id</th>
 <th align="center">edge</th>
+<th align="center">to</th>
+<th align="center">from</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td align="center">E-1</td>
+<td align="center">1</td>
+<td align="center">S-02</td>
 <td align="center">S-01</td>
-<td align="center">S-01</td>
-<td align="center">0</td>
 </tr>
 <tr class="even">
+<td align="center">E-1</td>
+<td align="center">1</td>
 <td align="center">S-01</td>
 <td align="center">S-02</td>
+</tr>
+<tr class="odd">
+<td align="center">E-2</td>
 <td align="center">1</td>
-</tr>
-<tr class="odd">
-<td align="center">S-01</td>
 <td align="center">S-03</td>
-<td align="center">0</td>
+<td align="center">S-02</td>
 </tr>
 <tr class="even">
-<td align="center">S-01</td>
-<td align="center">S-04</td>
-<td align="center">0</td>
+<td align="center">E-2</td>
+<td align="center">1</td>
+<td align="center">S-02</td>
+<td align="center">S-03</td>
 </tr>
 <tr class="odd">
-<td align="center">S-01</td>
-<td align="center">S-05</td>
-<td align="center">0</td>
+<td align="center">E-3</td>
+<td align="center">1</td>
+<td align="center">S-04</td>
+<td align="center">S-03</td>
 </tr>
 <tr class="even">
-<td align="center">S-01</td>
+<td align="center">E-3</td>
+<td align="center">1</td>
+<td align="center">S-03</td>
+<td align="center">S-04</td>
+</tr>
+<tr class="odd">
+<td align="center">E-4</td>
+<td align="center">1</td>
+<td align="center">S-05</td>
+<td align="center">S-04</td>
+</tr>
+<tr class="even">
+<td align="center">E-4</td>
+<td align="center">1</td>
+<td align="center">S-04</td>
+<td align="center">S-05</td>
+</tr>
+<tr class="odd">
+<td align="center">E-5</td>
+<td align="center">1</td>
 <td align="center">S-06</td>
-<td align="center">0</td>
-</tr>
-<tr class="odd">
-<td align="center">S-01</td>
-<td align="center">S-07</td>
-<td align="center">0</td>
-</tr>
-<tr class="even">
-<td align="center">S-01</td>
-<td align="center">S-08</td>
-<td align="center">0</td>
-</tr>
-<tr class="odd">
-<td align="center">S-01</td>
-<td align="center">S-09</td>
-<td align="center">0</td>
-</tr>
-<tr class="even">
-<td align="center">S-01</td>
-<td align="center">S-10</td>
-<td align="center">0</td>
-</tr>
-<tr class="odd">
-<td align="center">S-02</td>
-<td align="center">S-01</td>
-<td align="center">1</td>
-</tr>
-<tr class="even">
-<td align="center">S-02</td>
-<td align="center">S-02</td>
-<td align="center">0</td>
-</tr>
-<tr class="odd">
-<td align="center">S-02</td>
-<td align="center">S-03</td>
-<td align="center">1</td>
-</tr>
-<tr class="even">
-<td align="center">S-02</td>
-<td align="center">S-04</td>
-<td align="center">0</td>
-</tr>
-<tr class="odd">
-<td align="center">S-02</td>
 <td align="center">S-05</td>
-<td align="center">0</td>
 </tr>
 <tr class="even">
-<td align="center">S-02</td>
+<td align="center">E-5</td>
+<td align="center">1</td>
+<td align="center">S-05</td>
 <td align="center">S-06</td>
-<td align="center">0</td>
 </tr>
 <tr class="odd">
-<td align="center">S-02</td>
+<td align="center">E-6</td>
+<td align="center">1</td>
 <td align="center">S-07</td>
-<td align="center">0</td>
+<td align="center">S-06</td>
 </tr>
 <tr class="even">
-<td align="center">S-02</td>
+<td align="center">E-6</td>
+<td align="center">1</td>
+<td align="center">S-06</td>
+<td align="center">S-07</td>
+</tr>
+<tr class="odd">
+<td align="center">E-7</td>
+<td align="center">1</td>
 <td align="center">S-08</td>
-<td align="center">0</td>
+<td align="center">S-07</td>
+</tr>
+<tr class="even">
+<td align="center">E-7</td>
+<td align="center">1</td>
+<td align="center">S-07</td>
+<td align="center">S-08</td>
 </tr>
 <tr class="odd">
-<td align="center">S-02</td>
+<td align="center">E-8</td>
+<td align="center">1</td>
 <td align="center">S-09</td>
-<td align="center">0</td>
+<td align="center">S-08</td>
 </tr>
 <tr class="even">
-<td align="center">S-02</td>
+<td align="center">E-8</td>
+<td align="center">1</td>
+<td align="center">S-08</td>
+<td align="center">S-09</td>
+</tr>
+<tr class="odd">
+<td align="center">E-9</td>
+<td align="center">1</td>
 <td align="center">S-10</td>
-<td align="center">0</td>
-</tr>
-<tr class="odd">
-<td align="center">S-03</td>
-<td align="center">S-01</td>
-<td align="center">0</td>
+<td align="center">S-09</td>
 </tr>
 <tr class="even">
-<td align="center">S-03</td>
-<td align="center">S-02</td>
+<td align="center">E-9</td>
 <td align="center">1</td>
-</tr>
-<tr class="odd">
-<td align="center">S-03</td>
-<td align="center">S-03</td>
-<td align="center">0</td>
-</tr>
-<tr class="even">
-<td align="center">S-03</td>
-<td align="center">S-04</td>
-<td align="center">1</td>
-</tr>
-<tr class="odd">
-<td align="center">S-03</td>
-<td align="center">S-05</td>
-<td align="center">0</td>
+<td align="center">S-09</td>
+<td align="center">S-10</td>
 </tr>
 </tbody>
 </table>
 <p>We can convert this table to an adjacency matrix with function <code><a href="../reference/df_to_matrix.html">bridge::df_to_matrix()</a></code>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Convert data.frame to adjacency matrix ----</span></span>
-<span><span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/df_to_matrix.html">df_to_matrix</a></span><span class="op">(</span><span class="va">adj_table</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Preview ----</span></span>
-<span><span class="va">mat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
-<span><span class="co">#&gt;      S-01 S-02 S-03 S-04 S-05</span></span>
-<span><span class="co">#&gt; S-01    0    1    0    0    0</span></span>
-<span><span class="co">#&gt; S-02    1    0    1    0    0</span></span>
-<span><span class="co">#&gt; S-03    0    1    0    1    0</span></span>
-<span><span class="co">#&gt; S-04    0    0    1    0    1</span></span>
-<span><span class="co">#&gt; S-05    0    0    0    1    0</span></span></code></pre></div>
 </div>
   </div>
 
