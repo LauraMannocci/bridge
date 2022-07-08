@@ -71,8 +71,7 @@ the edge, or a <code>character</code> vector with nodes labels.</p></dd>
     <h2>Value</h2>
     
 
-<p>A <code>data.frame</code> with one column, <code>node</code> containing unique ordered
-nodes labels.</p>
+<p>A <code>character</code> vector of unique ordered nodes labels.</p>
     </div>
 
     <div id="ref-examples">
@@ -83,35 +82,16 @@ nodes labels.</p>
 <span class="r-in"><span><span class="va">adour_sites</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">path_to_file</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Retrieve nodes (from nodes vector) ----</span></span></span>
-<span class="r-in"><span><span class="fu">nodes_list</span><span class="op">(</span><span class="va">adour_sites</span><span class="op">$</span><span class="st">"site"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    node</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  S-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  S-02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  S-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  S-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  S-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  S-06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  S-07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  S-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  S-09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 S-10</span>
+<span class="r-in"><span><span class="va">adour_nodes</span> <span class="op">&lt;-</span> <span class="fu">nodes_list</span><span class="op">(</span><span class="va">adour_sites</span><span class="op">$</span><span class="st">"site"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">adour_nodes</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "S-01" "S-02" "S-03" "S-04" "S-05" "S-06" "S-07" "S-08" "S-09" "S-10"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Find edges with 1 degree of neighborhood (undirected network) ----</span></span></span>
-<span class="r-in"><span><span class="va">edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="edges_list.html">edges_list</a></span><span class="op">(</span><span class="va">adour_sites</span><span class="op">$</span><span class="st">"site"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">adour_edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="edges_list.html">edges_list</a></span><span class="op">(</span><span class="va">adour_nodes</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Retrieve nodes (from edges list) ----</span></span></span>
-<span class="r-in"><span><span class="fu">nodes_list</span><span class="op">(</span><span class="va">edges</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    node</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  S-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  S-02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  S-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  S-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  S-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  S-06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  S-07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  S-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  S-09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 S-10</span>
+<span class="r-in"><span><span class="fu">nodes_list</span><span class="op">(</span><span class="va">adour_edges</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "S-01" "S-02" "S-03" "S-04" "S-05" "S-06" "S-07" "S-08" "S-09" "S-10"</span>
 </code></pre></div>
     </div>
   </div>
