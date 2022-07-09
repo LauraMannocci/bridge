@@ -79,132 +79,144 @@
 
     
     
+<p>The aim of the package <code>bridge</code> is to […]</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/frbcesab/bridge" class="external-link">"bridge"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span></code></pre></div>
+<p>First let’s define a custom theme for the <code>ggplot2</code> visualizations.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">custom_theme</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_light</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.title   <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, family <span class="op">=</span> <span class="st">"serif"</span>, size <span class="op">=</span> <span class="fl">18</span><span class="op">)</span>,</span>
+<span>        plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span>, family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span>,</span>
+<span>        axis.title   <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>        axis.text    <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <div class="section level2">
-<h2 id="provided-datasets">Provided datasets<a class="anchor" aria-label="anchor" href="#provided-datasets"></a>
+<h2 id="provided-data">Provided data<a class="anchor" aria-label="anchor" href="#provided-data"></a>
 </h2>
 <p>The package <code>bridge</code> comes with two datasets:</p>
 <ul>
 <li>
 <strong>Adour river</strong>, an <code>sf</code> spatial object of type <code>LINESTRING</code> providing the geometry of the French river <em>L’Adour</em>;</li>
 <li>
-<strong>Adour sites</strong>, a <code>data.frame</code> with sites labels and sites coordinates along the river. Note that for this tutorial these sites are fictive.</li>
+<strong>Adour sites</strong>, a <code>data.frame</code> with sites labels and sites coordinates along the river.</li>
 </ul>
-<p>First let’s load the <strong>Adour river</strong> layer:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="section level3">
+<h3 id="adour-river">Adour river<a class="anchor" aria-label="anchor" href="#adour-river"></a>
+</h3>
+<p>Let’s import the <strong>Adour river</strong> spatial layer.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load the spatial layer of Adour river ----</span></span>
-<span><span class="va">path_to_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"adour_lambert93.gpkg"</span>, </span>
-<span>                            package <span class="op">=</span> <span class="st">"bridge"</span><span class="op">)</span></span>
+<span><span class="va">path_to_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"adour_lambert93.gpkg"</span>, package <span class="op">=</span> <span class="st">"bridge"</span><span class="op">)</span></span>
 <span><span class="va">adour_river</span>  <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="va">path_to_file</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Preview ----</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">adour_river</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">adour_river</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 1 feature and 1 field</span></span>
 <span><span class="co">#&gt; Geometry type: LINESTRING</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
 <span><span class="co">#&gt; Bounding box:  xmin: 334324.8 ymin: 6207072 xmax: 480886.8 ymax: 6308530</span></span>
 <span><span class="co">#&gt; Projected CRS: RGF93 / Lambert-93</span></span>
 <span><span class="co">#&gt;   river_name                           geom</span></span>
-<span><span class="co">#&gt; 1    L'Adour LINESTRING (480886.8 620722...</span></span>
+<span><span class="co">#&gt; 1    L'Adour LINESTRING (480886.8 620722...</span></span></code></pre></div>
+<p>This layer is an <a href="https://cran.r-project.org/package=sf" class="external-link"><code>sf</code></a> spatial object of type <code>LINESTRING</code> and contains one single row (geometry) defined in the <a href="https://epsg.io/2154" class="external-link">RGF93 / Lambert-93</a> projection.</p>
+<p>Now let’s import a base map of France to locate the Adour river using the package <a href="https://cran.r-project.org/package=rnaturalearth" class="external-link"><code>rnaturalearth</code></a>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Import France departments ----</span></span>
+<span><span class="va">france</span> <span class="op">&lt;-</span> <span class="fu">rnaturalearth</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rnaturalearth/man/ne_states.html" class="external-link">ne_states</a></span><span class="op">(</span><span class="st">"france"</span>, returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Map ----</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_river</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"The French river Adour"</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="co"># Remove overseas territories ----</span></span>
+<span><span class="va">france</span> <span class="op">&lt;-</span> <span class="va">france</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"^FR\\."</span>, <span class="va">france</span><span class="op">$</span><span class="va">code_hasc</span><span class="op">)</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="co"># Project layer to RGF93 / Lambert-93 system ----</span></span>
+<span><span class="va">france</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="va">france</span>, <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">st_crs</a></span><span class="op">(</span><span class="va">adour_river</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Let’s locate the Adour river of the France map.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">france</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"lightgray"</span>, col <span class="op">=</span> <span class="st">"white"</span>, size <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_river</span>, col <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title   <span class="op">=</span> <span class="st">"The French river Adour"</span>, </span>
+<span>       caption <span class="op">=</span> <span class="st">"RGF93 / Lambert-93 Projection"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">custom_theme</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="bridge_files/figure-html/load-adour-river-1.png" width="100%"></p>
-<p>Now, let’s load the sites around the Adour:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<p><img src="bridge_files/figure-html/map-adour-river-1.png" width="100%"></p>
+</div>
+<div class="section level3">
+<h3 id="adour-sites">Adour sites<a class="anchor" aria-label="anchor" href="#adour-sites"></a>
+</h3>
+<p>Let’s import the <strong>Adour sites</strong> data representing survey sites around the Adour.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Load the dataset of sites ----</span></span>
 <span><span class="va">path_to_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"adour_sites_coords.csv"</span>, </span>
 <span>                            package <span class="op">=</span> <span class="st">"bridge"</span><span class="op">)</span></span>
-<span><span class="va">adour_sites</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">path_to_file</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<caption>Sites along Adour</caption>
-<thead><tr class="header">
-<th align="center">site</th>
-<th align="right">longitude</th>
-<th align="right">latitude</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="center">S-01</td>
-<td align="right">470911.2</td>
-<td align="right">6219515</td>
-</tr>
-<tr class="even">
-<td align="center">S-02</td>
-<td align="right">466841.1</td>
-<td align="right">6231099</td>
-</tr>
-<tr class="odd">
-<td align="center">S-03</td>
-<td align="right">464962.6</td>
-<td align="right">6242684</td>
-</tr>
-<tr class="even">
-<td align="center">S-04</td>
-<td align="right">466215.0</td>
-<td align="right">6252389</td>
-</tr>
-<tr class="odd">
-<td align="center">S-05</td>
-<td align="right">464023.4</td>
-<td align="right">6266791</td>
-</tr>
-<tr class="even">
-<td align="center">S-06</td>
-<td align="right">458701.0</td>
-<td align="right">6284011</td>
-</tr>
-<tr class="odd">
-<td align="center">S-07</td>
-<td align="right">445238.4</td>
-<td align="right">6291838</td>
-</tr>
-<tr class="even">
-<td align="center">S-08</td>
-<td align="right">434593.6</td>
-<td align="right">6302169</td>
-</tr>
-<tr class="odd">
-<td align="center">S-09</td>
-<td align="right">418626.3</td>
-<td align="right">6306239</td>
-</tr>
-<tr class="even">
-<td align="center">S-10</td>
-<td align="right">379177.9</td>
-<td align="right">6304048</td>
-</tr>
-</tbody>
-</table>
-<p>Let’s convert this <code>data.frame</code> into an <code>sf</code> object of type <code>POINT</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<span><span class="va">adour_sites</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">path_to_file</span><span class="op">)</span></span>
+<span><span class="va">adour_sites</span></span>
+<span><span class="co">#&gt;    site longitude latitude</span></span>
+<span><span class="co">#&gt; 1  S-01  470911.2  6219515</span></span>
+<span><span class="co">#&gt; 2  S-02  466841.1  6231099</span></span>
+<span><span class="co">#&gt; 3  S-03  464962.6  6242684</span></span>
+<span><span class="co">#&gt; 4  S-04  466215.0  6252389</span></span>
+<span><span class="co">#&gt; 5  S-05  464023.4  6266791</span></span>
+<span><span class="co">#&gt; 6  S-06  458701.0  6284011</span></span>
+<span><span class="co">#&gt; 7  S-07  445238.4  6291838</span></span>
+<span><span class="co">#&gt; 8  S-08  434593.6  6302169</span></span>
+<span><span class="co">#&gt; 9  S-09  418626.3  6306239</span></span>
+<span><span class="co">#&gt; 10 S-10  379177.9  6304048</span></span></code></pre></div>
+<p>[…]</p>
+<p>Let’s convert this <code>data.frame</code> into an <code>sf</code> object of type <code>POINT</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Convert data.frame to sf object ----</span></span>
 <span><span class="va">adour_sites_sf</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">adour_sites</span>, coords <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">3</span>, crs <span class="op">=</span> <span class="st">"epsg:2154"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Map ----</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_river</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="va">adour_sites_sf</span></span>
+<span><span class="co">#&gt; Simple feature collection with 10 features and 1 field</span></span>
+<span><span class="co">#&gt; Geometry type: POINT</span></span>
+<span><span class="co">#&gt; Dimension:     XY</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: 379177.9 ymin: 6219515 xmax: 470911.2 ymax: 6306239</span></span>
+<span><span class="co">#&gt; Projected CRS: RGF93 / Lambert-93</span></span>
+<span><span class="co">#&gt;    site                 geometry</span></span>
+<span><span class="co">#&gt; 1  S-01 POINT (470911.2 6219515)</span></span>
+<span><span class="co">#&gt; 2  S-02 POINT (466841.1 6231099)</span></span>
+<span><span class="co">#&gt; 3  S-03 POINT (464962.6 6242684)</span></span>
+<span><span class="co">#&gt; 4  S-04   POINT (466215 6252389)</span></span>
+<span><span class="co">#&gt; 5  S-05 POINT (464023.4 6266791)</span></span>
+<span><span class="co">#&gt; 6  S-06   POINT (458701 6284011)</span></span>
+<span><span class="co">#&gt; 7  S-07 POINT (445238.4 6291838)</span></span>
+<span><span class="co">#&gt; 8  S-08 POINT (434593.6 6302169)</span></span>
+<span><span class="co">#&gt; 9  S-09 POINT (418626.3 6306239)</span></span>
+<span><span class="co">#&gt; 10 S-10 POINT (379177.9 6304048)</span></span></code></pre></div>
+<p>Finally, let’s map these sites and the Adour river.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_river</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_sites_sf</span>, shape <span class="op">=</span> <span class="fl">19</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggsflabel</span><span class="fu">::</span><span class="fu"><a href="https://yutannihilation.github.io/ggsflabel/reference/geom_sf_label.html" class="external-link">geom_sf_label</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_sites_sf</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">site</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">4.5</span>, </span>
 <span>                           nudge_x <span class="op">=</span> <span class="op">-</span><span class="fl">7500</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Sites along the French river Adour"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title   <span class="op">=</span> <span class="st">"Study area (French river Adour)"</span>, </span>
+<span>       caption <span class="op">=</span> <span class="st">"RGF93 / Lambert-93 Projection"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">custom_theme</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="bridge_files/figure-html/df-to-sf-1.png" width="100%"></p>
+<p><img src="bridge_files/figure-html/map-adour-sites-1.png" width="100%"></p>
+</div>
 </div>
 <div class="section level2">
-<h2 id="adjacency-table">Adjacency table<a class="anchor" aria-label="anchor" href="#adjacency-table"></a>
+<h2 id="nodes-and-edges">Nodes and Edges<a class="anchor" aria-label="anchor" href="#nodes-and-edges"></a>
+</h2>
+<div class="section level3">
+<h3 id="nodes-list">Nodes list<a class="anchor" aria-label="anchor" href="#nodes-list"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="edges-list">Edges list<a class="anchor" aria-label="anchor" href="#edges-list"></a>
+</h3>
+</div>
+</div>
+<div class="section level2">
+<h2 id="to-review">TO REVIEW<a class="anchor" aria-label="anchor" href="#to-review"></a>
 </h2>
 <p>From the sites labels, we will create an adjacency table based on a degree <strong>1</strong> of neighborhood. This means that a site is linked to the first next site (upstream) and also to the first previous site (downstream).</p>
 <p><strong>Important:</strong> as the sites have a direction (along the Adour river, from upstream to downstream), the order of the sites must be found in the sites labels.</p>
 <p>For instance, in our dataset, the sites are labelled as <strong>S-01</strong>, <strong>S-02</strong>, …, <strong>S-10</strong>. This means that the most upstream site is <strong>S-01</strong> and the most downstream is <strong>S-10</strong>.</p>
 <p>But be aware that ordering characters can have some unwanted effects, especially if they contain numbers.</p>
 <p>For instance,</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Alphanumerical ordering ----</span></span>
 <span><span class="va">sites</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span> <span class="st">"s1"</span>,  <span class="st">"s2"</span>, <span class="st">"s11"</span>, <span class="st">"s10"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">sites</span><span class="op">)</span></span>
@@ -217,7 +229,7 @@
 <p>You may want to code your sites as in the second example, i.e. based on a Natural ordering.</p>
 <p><br></p>
 <p>Let’s create this adjacency table with the function <code><a href="../reference/edges_list.html">bridge::edges_list()</a></code></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Retrieve nodes (from nodes vector) ----</span></span>
 <span><span class="va">adour_nodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nodes_list.html">nodes_list</a></span><span class="op">(</span><span class="va">adour_sites</span><span class="op">$</span><span class="st">"site"</span><span class="op">)</span></span>
 <span><span class="va">adour_nodes</span></span>
