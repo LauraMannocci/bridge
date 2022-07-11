@@ -202,7 +202,7 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_river</span>, col <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_sites_sf</span>, shape <span class="op">=</span> <span class="fl">19</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_sites_sf</span>, shape <span class="op">=</span> <span class="fl">19</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_label</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_sites</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y <span class="op">=</span> <span class="va">latitude</span>, label <span class="op">=</span> <span class="va">site</span><span class="op">)</span>, </span>
 <span>            size <span class="op">=</span> <span class="fl">4.2</span>, nudge_x <span class="op">=</span> <span class="fl">5000</span>, family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title   <span class="op">=</span> <span class="st">"Study area (French river Adour)"</span>, </span>
@@ -302,6 +302,8 @@
 <code>directed</code>: if <code>FALSE</code> (default), symmetrical edges (e.g. <code>S01-S02</code> and <code>S02-S01</code>) are returned (<em>undirected network</em>). Otherwise (<em>directed network</em>) only the first edge (e.g. <code>S01-S02</code>) is returned (according to the direction of the nodes labels).</li>
 </ul>
 <p><br></p>
+<p><strong>Tips: </strong> if you want to use Moran’s Eigenvector Maps (MEM) use <code>directed = FALSE</code>. If you want to use Asymetric Eigenvector Maps (AEM) use <code>directed = TRUE</code>.</p>
+<p><br></p>
 <p>Let’s use this function <code><a href="../reference/edges_list.html">edges_list()</a></code> in a directed way.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># List of edges with degree 1 of neighborhood (directed network) ----</span></span>
@@ -350,18 +352,54 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_river</span>, col <span class="op">=</span> <span class="st">"darkgray"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_edges_sf</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_sites_sf</span>, shape <span class="op">=</span> <span class="fl">19</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_sites_sf</span>, shape <span class="op">=</span> <span class="fl">19</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title   <span class="op">=</span> <span class="st">"Edges with degree 1 of neighborhood"</span>, </span>
 <span>       caption <span class="op">=</span> <span class="st">"RGF93 / Lambert-93 Projection"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">custom_theme</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="bridge_files/figure-html/map-adour-edges-1.png" width="80%" style="display: block; margin: auto;"></p>
+<p><br></p>
+<p>Finally, let’s increase the degree of neighborhood.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># List of edges with degree 3 of neighborhood ----</span></span>
+<span><span class="va">adour_edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/edges_list.html">edges_list</a></span><span class="op">(</span><span class="va">adour_nodes</span>, degree <span class="op">=</span> <span class="fl">3</span>, directed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Convert edges list to sf object ----</span></span>
+<span><span class="va">adour_edges_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/edges_to_sf.html">edges_to_sf</a></span><span class="op">(</span><span class="va">adour_edges</span>, <span class="va">adour_sites_sf</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_river</span>, col <span class="op">=</span> <span class="st">"darkgray"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_edges_sf</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_sites_sf</span>, shape <span class="op">=</span> <span class="fl">19</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title   <span class="op">=</span> <span class="st">"Edges with degree 3 of neighborhood"</span>, </span>
+<span>       caption <span class="op">=</span> <span class="st">"RGF93 / Lambert-93 Projection"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">custom_theme</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="bridge_files/figure-html/map-adour-edges-3-1.png" width="80%" style="display: block; margin: auto;"></p>
 <p><br></p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="connectivity-matrix">Connectivity matrix<a class="anchor" aria-label="anchor" href="#connectivity-matrix"></a>
 </h2>
-<p>We can convert this table to an adjacency matrix with function <code><a href="../reference/adjacency_matrix.html">bridge::adjacency_matrix()</a></code>.</p>
+<p>We can convert the edges list to a connectivity matrix (also called adjacency matrix) by using the function <code><a href="../reference/adjacency_matrix.html">adjacency_matrix()</a></code>.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># List of edges with degree 3 of neighborhood ----</span></span>
+<span><span class="va">adour_edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/edges_list.html">edges_list</a></span><span class="op">(</span><span class="va">adour_nodes</span>, degree <span class="op">=</span> <span class="fl">1</span>, directed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create connectivity matrix ----</span></span>
+<span><span class="va">adour_edges_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/adjacency_matrix.html">adjacency_matrix</a></span><span class="op">(</span><span class="va">adour_edges</span><span class="op">)</span></span>
+<span><span class="va">adour_edges_mat</span></span>
+<span><span class="co">#&gt;      S-01 S-02 S-03 S-04 S-05 S-06 S-07 S-08 S-09 S-10</span></span>
+<span><span class="co">#&gt; S-01    0    1    0    0    0    0    0    0    0    0</span></span>
+<span><span class="co">#&gt; S-02    0    0    1    0    0    0    0    0    0    0</span></span>
+<span><span class="co">#&gt; S-03    0    0    0    1    0    0    0    0    0    0</span></span>
+<span><span class="co">#&gt; S-04    0    0    0    0    1    0    0    0    0    0</span></span>
+<span><span class="co">#&gt; S-05    0    0    0    0    0    1    0    0    0    0</span></span>
+<span><span class="co">#&gt; S-06    0    0    0    0    0    0    1    0    0    0</span></span>
+<span><span class="co">#&gt; S-07    0    0    0    0    0    0    0    1    0    0</span></span>
+<span><span class="co">#&gt; S-08    0    0    0    0    0    0    0    0    1    0</span></span>
+<span><span class="co">#&gt; S-09    0    0    0    0    0    0    0    0    0    1</span></span>
+<span><span class="co">#&gt; S-10    0    0    0    0    0    0    0    0    0    0</span></span></code></pre></div>
+<p><br></p>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
