@@ -79,7 +79,7 @@
 
     
     
-<p>The aim of the package <code>bridge</code> is to provide tools to work with directed spatial networks. It allows users to easily create and visualize network objects, like nodes and edges lists, connectivity matrix, edges weighting matrix, spatial weight matrix, nodes by edges matrix, etc. These objects can be used later in spatial multivariate analyses: Moran’s Eigenvector Maps (MEM, Dray <em>et al.</em> 2006) and Asymetric Eigenvector Maps (AEM, Blanchet <em>et al.</em> 2008).</p>
+<p>The aim of the package <code>bridge</code> is to provide tools to work with directed spatial networks. It allows users to easily create and visualize network objects, like nodes and edges lists, connectivity matrix, edges weighting matrix, spatial weight matrix, nodes by edges matrix, etc. These objects can be used later in spatial multivariate analyses: Moran’s Eigenvector Maps (MEM, Dray <em>et al.</em> 2006) and Asymetric Eigenvector Maps (AEM, Blanchet <em>et al.</em> 2008) available in the package <a href="https://cran.r-project.org/package=adespatial" class="external-link"><code>adespatial</code></a> (Dray <em>et al.</em> 2022).</p>
 <p>This package has been developed for the <a href="https://www.fondationbiodiversite.fr/en/about-the-foundation/le-cesab/" class="external-link">FRB-CESAB</a> working group <a href="https://www.fondationbiodiversite.fr/en/the-frb-in-action/programs-and-projects/le-cesab/bridge/" class="external-link">Bridge</a> that aims to better understand the role of local and regional environmental factors in shaping the taxonomic and functional diversity of plant communities established along river corridors, roadside corridors and cultivated field margins.</p>
 <p><br></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -143,8 +143,8 @@
 <span><span class="va">adour_extent</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html" class="external-link">st_bbox</a></span><span class="op">(</span><span class="va">adour_river</span><span class="op">)</span></span>
 <span><span class="va">adour_extent</span> <span class="op">&lt;-</span> <span class="va">adour_extent</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10000</span>, <span class="op">-</span><span class="fl">10000</span>, <span class="fl">10000</span>, <span class="fl">10000</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">france</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"lightgray"</span>, col <span class="op">=</span> <span class="st">"white"</span>, size <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">france</span>, fill <span class="op">=</span> <span class="st">"lightgray"</span>, col <span class="op">=</span> <span class="st">"white"</span>, size <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_river</span>, col <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sfc.html" class="external-link">st_as_sfc</a></span><span class="op">(</span><span class="va">adour_extent</span><span class="op">)</span>, fill <span class="op">=</span> <span class="cn">NA</span>, size <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title   <span class="op">=</span> <span class="st">"The French river Adour"</span>, </span>
@@ -200,8 +200,8 @@
 <p><br></p>
 <p>Finally, let’s map these sites and the Adour river.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_river</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span> <span class="op">+</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_river</span>, col <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_sites_sf</span>, shape <span class="op">=</span> <span class="fl">19</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_label</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_sites</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y <span class="op">=</span> <span class="va">latitude</span>, label <span class="op">=</span> <span class="va">site</span><span class="op">)</span>, </span>
 <span>            size <span class="op">=</span> <span class="fl">4.2</span>, nudge_x <span class="op">=</span> <span class="fl">5000</span>, family <span class="op">=</span> <span class="st">"serif"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -212,26 +212,22 @@
 <span>               arrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/arrow.html" class="external-link">arrow</a></span><span class="op">(</span>length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.75</span>, <span class="st">'cm'</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">'closed'</span><span class="op">)</span>,</span>
 <span>               size  <span class="op">=</span> <span class="fl">2.25</span><span class="op">)</span></span></code></pre></div>
 <p><img src="bridge_files/figure-html/map-adour-sites-1.png" width="80%" style="display: block; margin: auto;"></p>
+<p><br></p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="nodes-and-edges">Nodes and Edges<a class="anchor" aria-label="anchor" href="#nodes-and-edges"></a>
 </h2>
+<p>The first information to extract from our spatial network is 1) the nodes (sites) list and 2) the edges (links) list between nodes.</p>
+<p><br></p>
 <div class="section level3">
 <h3 id="nodes-list">Nodes list<a class="anchor" aria-label="anchor" href="#nodes-list"></a>
 </h3>
-</div>
-<div class="section level3">
-<h3 id="edges-list">Edges list<a class="anchor" aria-label="anchor" href="#edges-list"></a>
-</h3>
-</div>
-</div>
-<div class="section level2">
-<h2 id="to-review">TO REVIEW<a class="anchor" aria-label="anchor" href="#to-review"></a>
-</h2>
-<p>From the sites labels, we will create an adjacency table based on a degree <strong>1</strong> of neighborhood. This means that a site is linked to the first next site (upstream) and also to the first previous site (downstream).</p>
+<p>First, let’s identify the <strong>nodes list</strong>, i.e. a vector of unique ordered sites labels.</p>
+<p><br></p>
 <p><strong>Important:</strong> as the sites have a direction (along the Adour river, from upstream to downstream), the order of the sites must be found in the sites labels.</p>
-<p>For instance, in our dataset, the sites are labelled as <strong>S-01</strong>, <strong>S-02</strong>, …, <strong>S-10</strong>. This means that the most upstream site is <strong>S-01</strong> and the most downstream is <strong>S-10</strong>.</p>
+<p>For instance, in the Adour sites dataset, sites are labelled as <strong>S-01</strong>, <strong>S-02</strong>, …, <strong>S-10</strong>. This means that the most upstream site is <strong>S-01</strong> and the most downstream is <strong>S-10</strong>.</p>
+<p><br></p>
 <p>But be aware that ordering characters can have some unwanted effects, especially if they contain numbers.</p>
 <p>For instance,</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -244,143 +240,136 @@
 <span><span class="va">sites</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"s01"</span>, <span class="st">"s02"</span>, <span class="st">"s11"</span>, <span class="st">"s10"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">sites</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "s01" "s02" "s10" "s11"</span></span></code></pre></div>
-<p>You may want to code your sites as in the second example, i.e. based on a Natural ordering.</p>
+<p>You may want to code your sites as in the second example, i.e. based on a <strong>Natural ordering</strong>.</p>
 <p><br></p>
-<p>Let’s create this adjacency table with the function <code><a href="../reference/edges_list.html">bridge::edges_list()</a></code></p>
+<p>Let’s use the function <code><a href="../reference/nodes_list.html">nodes_list()</a></code> to 1) retrieve the unique labels of sites, and to 2) order them along the Adour river (from upstream to downstream).</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Retrieve nodes (from nodes vector) ----</span></span>
-<span><span class="va">adour_nodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nodes_list.html">nodes_list</a></span><span class="op">(</span><span class="va">adour_sites</span><span class="op">$</span><span class="st">"site"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">adour_nodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nodes_list.html">nodes_list</a></span><span class="op">(</span><span class="va">adour_sites</span><span class="op">$</span><span class="st">"site"</span><span class="op">)</span></span>
 <span><span class="va">adour_nodes</span></span>
-<span><span class="co">#&gt;  [1] "S-01" "S-02" "S-03" "S-04" "S-05" "S-06" "S-07" "S-08" "S-09" "S-10"</span></span>
-<span></span>
-<span><span class="co"># List of edges with degree 1 of neighborhood ----</span></span>
-<span><span class="va">adour_edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/edges_list.html">edges_list</a></span><span class="op">(</span><span class="va">adour_nodes</span>, degree <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<caption>Adjacency table of degree 1 of neighborhood</caption>
-<thead><tr class="header">
-<th align="center">edge_id</th>
-<th align="center">edge</th>
-<th align="center">from</th>
-<th align="center">to</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="center">E-1</td>
-<td align="center">1</td>
-<td align="center">S-01</td>
-<td align="center">S-02</td>
-</tr>
-<tr class="even">
-<td align="center">E-1</td>
-<td align="center">1</td>
-<td align="center">S-02</td>
-<td align="center">S-01</td>
-</tr>
-<tr class="odd">
-<td align="center">E-2</td>
-<td align="center">1</td>
-<td align="center">S-02</td>
-<td align="center">S-03</td>
-</tr>
-<tr class="even">
-<td align="center">E-2</td>
-<td align="center">1</td>
-<td align="center">S-03</td>
-<td align="center">S-02</td>
-</tr>
-<tr class="odd">
-<td align="center">E-3</td>
-<td align="center">1</td>
-<td align="center">S-03</td>
-<td align="center">S-04</td>
-</tr>
-<tr class="even">
-<td align="center">E-3</td>
-<td align="center">1</td>
-<td align="center">S-04</td>
-<td align="center">S-03</td>
-</tr>
-<tr class="odd">
-<td align="center">E-4</td>
-<td align="center">1</td>
-<td align="center">S-04</td>
-<td align="center">S-05</td>
-</tr>
-<tr class="even">
-<td align="center">E-4</td>
-<td align="center">1</td>
-<td align="center">S-05</td>
-<td align="center">S-04</td>
-</tr>
-<tr class="odd">
-<td align="center">E-5</td>
-<td align="center">1</td>
-<td align="center">S-05</td>
-<td align="center">S-06</td>
-</tr>
-<tr class="even">
-<td align="center">E-5</td>
-<td align="center">1</td>
-<td align="center">S-06</td>
-<td align="center">S-05</td>
-</tr>
-<tr class="odd">
-<td align="center">E-6</td>
-<td align="center">1</td>
-<td align="center">S-06</td>
-<td align="center">S-07</td>
-</tr>
-<tr class="even">
-<td align="center">E-6</td>
-<td align="center">1</td>
-<td align="center">S-07</td>
-<td align="center">S-06</td>
-</tr>
-<tr class="odd">
-<td align="center">E-7</td>
-<td align="center">1</td>
-<td align="center">S-07</td>
-<td align="center">S-08</td>
-</tr>
-<tr class="even">
-<td align="center">E-7</td>
-<td align="center">1</td>
-<td align="center">S-08</td>
-<td align="center">S-07</td>
-</tr>
-<tr class="odd">
-<td align="center">E-8</td>
-<td align="center">1</td>
-<td align="center">S-08</td>
-<td align="center">S-09</td>
-</tr>
-<tr class="even">
-<td align="center">E-8</td>
-<td align="center">1</td>
-<td align="center">S-09</td>
-<td align="center">S-08</td>
-</tr>
-<tr class="odd">
-<td align="center">E-9</td>
-<td align="center">1</td>
-<td align="center">S-09</td>
-<td align="center">S-10</td>
-</tr>
-<tr class="even">
-<td align="center">E-9</td>
-<td align="center">1</td>
-<td align="center">S-10</td>
-<td align="center">S-09</td>
-</tr>
-</tbody>
-</table>
+<span><span class="co">#&gt;  [1] "S-01" "S-02" "S-03" "S-04" "S-05" "S-06" "S-07" "S-08" "S-09" "S-10"</span></span></code></pre></div>
+<p><br></p>
+</div>
+<div class="section level3">
+<h3 id="edges-list">Edges list<a class="anchor" aria-label="anchor" href="#edges-list"></a>
+</h3>
+<p>From this nodes list, we can create an <strong>edges list</strong>, i.e. a table describing links between nodes. Several methods exist to identify spatial neighbors and most of them are available in the package <a href="https://cran.r-project.org/package=spdep" class="external-link"><code>spdep</code></a> (Bivand <em>et al.</em> 2022).</p>
+<p><br></p>
+<p>Here we implement our own method to detect spatial neighbors based sites labels and a degree of neighborhood. As our sites are ordered along the Adour river, if we use a degree <strong>1</strong> of neighborhood, a site will be linked to the first next site (upstream) and also to the first previous site (downstream). If we use a degree <strong>2</strong> of neighborhood, a site will be linked to the two next sites (upstream) and also to the two previous sites (downstream). And so on.</p>
+<p><br></p>
+<p>Let’s create this edges list with the function <code><a href="../reference/edges_list.html">edges_list()</a></code>.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># List of edges with degree 1 of neighborhood ----</span></span>
+<span><span class="va">adour_edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/edges_list.html">edges_list</a></span><span class="op">(</span><span class="va">adour_nodes</span>, degree <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">adour_edges</span></span>
+<span><span class="co">#&gt;    edge_id edge from   to</span></span>
+<span><span class="co">#&gt; 1      E-1    1 S-01 S-02</span></span>
+<span><span class="co">#&gt; 2      E-1    1 S-02 S-01</span></span>
+<span><span class="co">#&gt; 3      E-2    1 S-02 S-03</span></span>
+<span><span class="co">#&gt; 4      E-2    1 S-03 S-02</span></span>
+<span><span class="co">#&gt; 5      E-3    1 S-03 S-04</span></span>
+<span><span class="co">#&gt; 6      E-3    1 S-04 S-03</span></span>
+<span><span class="co">#&gt; 7      E-4    1 S-04 S-05</span></span>
+<span><span class="co">#&gt; 8      E-4    1 S-05 S-04</span></span>
+<span><span class="co">#&gt; 9      E-5    1 S-05 S-06</span></span>
+<span><span class="co">#&gt; 10     E-5    1 S-06 S-05</span></span>
+<span><span class="co">#&gt; 11     E-6    1 S-06 S-07</span></span>
+<span><span class="co">#&gt; 12     E-6    1 S-07 S-06</span></span>
+<span><span class="co">#&gt; 13     E-7    1 S-07 S-08</span></span>
+<span><span class="co">#&gt; 14     E-7    1 S-08 S-07</span></span>
+<span><span class="co">#&gt; 15     E-8    1 S-08 S-09</span></span>
+<span><span class="co">#&gt; 16     E-8    1 S-09 S-08</span></span>
+<span><span class="co">#&gt; 17     E-9    1 S-09 S-10</span></span>
+<span><span class="co">#&gt; 18     E-9    1 S-10 S-09</span></span></code></pre></div>
+<p>This <code>data.frame</code> contains four columns:</p>
+<ul>
+<li>
+<code>edge_id</code>: label of the edge</li>
+<li>
+<code>edge</code>: 0 (no edge) or 1 (edge), useful if <code>all = TRUE</code> (see below)</li>
+<li>
+<code>from</code>: label of the most upstream node of the edge</li>
+<li>
+<code>to</code>: label of the most downstream node of the edge</li>
+</ul>
+<p><br></p>
+<p>The function <code><a href="../reference/edges_list.html">edges_list()</a></code> has three additional arguments:</p>
+<ul>
+<li>
+<code>self</code>: if <code>TRUE</code>, a node can be linked to itself. Default is <code>FALSE</code>.</li>
+<li>
+<code>all</code>: if <code>TRUE</code>, the missing edges are also returned. Default is <code>FALSE</code>.</li>
+<li>
+<code>directed</code>: if <code>FALSE</code> (default), symmetrical edges (e.g. <code>S01-S02</code> and <code>S02-S01</code>) are returned (<em>undirected network</em>). Otherwise (<em>directed network</em>) only the first edge (e.g. <code>S01-S02</code>) is returned (according to the direction of the nodes labels).</li>
+</ul>
+<p><br></p>
+<p>Let’s use this function <code><a href="../reference/edges_list.html">edges_list()</a></code> in a directed way.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># List of edges with degree 1 of neighborhood (directed network) ----</span></span>
+<span><span class="va">adour_edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/edges_list.html">edges_list</a></span><span class="op">(</span><span class="va">adour_nodes</span>, degree <span class="op">=</span> <span class="fl">1</span>, directed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">adour_edges</span></span>
+<span><span class="co">#&gt;   edge_id edge from   to</span></span>
+<span><span class="co">#&gt; 1     E-1    1 S-01 S-02</span></span>
+<span><span class="co">#&gt; 2     E-2    1 S-02 S-03</span></span>
+<span><span class="co">#&gt; 3     E-3    1 S-03 S-04</span></span>
+<span><span class="co">#&gt; 4     E-4    1 S-04 S-05</span></span>
+<span><span class="co">#&gt; 5     E-5    1 S-05 S-06</span></span>
+<span><span class="co">#&gt; 6     E-6    1 S-06 S-07</span></span>
+<span><span class="co">#&gt; 7     E-7    1 S-07 S-08</span></span>
+<span><span class="co">#&gt; 8     E-8    1 S-08 S-09</span></span>
+<span><span class="co">#&gt; 9     E-9    1 S-09 S-10</span></span></code></pre></div>
+<p><br></p>
+</div>
+<div class="section level3">
+<h3 id="visualizing-edges">Visualizing edges<a class="anchor" aria-label="anchor" href="#visualizing-edges"></a>
+</h3>
+<p>The package <code>bridge</code> provides a convenient function to convert this edges list table to an <code>sf</code> object of type <code>LINESTRING</code>: <code><a href="../reference/edges_to_sf.html">edges_to_sf()</a></code>.</p>
+<p><br></p>
+<p>Let’s convert the edges list to a spatial object.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Convert edges list to sf object ----</span></span>
+<span><span class="va">adour_edges_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/edges_to_sf.html">edges_to_sf</a></span><span class="op">(</span><span class="va">adour_edges</span>, <span class="va">adour_sites_sf</span><span class="op">)</span></span>
+<span><span class="va">adour_edges_sf</span></span>
+<span><span class="co">#&gt; Simple feature collection with 9 features and 3 fields</span></span>
+<span><span class="co">#&gt; Geometry type: LINESTRING</span></span>
+<span><span class="co">#&gt; Dimension:     XY</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: 466841.1 ymin: 6219515 xmax: 470911.2 ymax: 6231099</span></span>
+<span><span class="co">#&gt; Projected CRS: RGF93 / Lambert-93</span></span>
+<span><span class="co">#&gt;   edge_id from   to                       geometry</span></span>
+<span><span class="co">#&gt; 1     E-1 S-01 S-02 LINESTRING (470911.2 621951...</span></span>
+<span><span class="co">#&gt; 2     E-2 S-02 S-03 LINESTRING (466841.1 623109...</span></span>
+<span><span class="co">#&gt; 3     E-3 S-03 S-04 LINESTRING (464962.6 624268...</span></span>
+<span><span class="co">#&gt; 4     E-4 S-04 S-05 LINESTRING (466215 6252389,...</span></span>
+<span><span class="co">#&gt; 5     E-5 S-05 S-06 LINESTRING (464023.4 626679...</span></span>
+<span><span class="co">#&gt; 6     E-6 S-06 S-07 LINESTRING (458701 6284011,...</span></span>
+<span><span class="co">#&gt; 7     E-7 S-07 S-08 LINESTRING (445238.4 629183...</span></span>
+<span><span class="co">#&gt; 8     E-8 S-08 S-09 LINESTRING (434593.6 630216...</span></span>
+<span><span class="co">#&gt; 9     E-9 S-09 S-10 LINESTRING (418626.3 630623...</span></span></code></pre></div>
+<p><br></p>
+<p>Let’s add these edges to our map.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_river</span>, col <span class="op">=</span> <span class="st">"darkgray"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_edges_sf</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adour_sites_sf</span>, shape <span class="op">=</span> <span class="fl">19</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title   <span class="op">=</span> <span class="st">"Edges with degree 1 of neighborhood"</span>, </span>
+<span>       caption <span class="op">=</span> <span class="st">"RGF93 / Lambert-93 Projection"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">custom_theme</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="bridge_files/figure-html/map-adour-edges-1.png" width="80%" style="display: block; margin: auto;"></p>
+<p><br></p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="connectivity-matrix">Connectivity matrix<a class="anchor" aria-label="anchor" href="#connectivity-matrix"></a>
+</h2>
 <p>We can convert this table to an adjacency matrix with function <code><a href="../reference/adjacency_matrix.html">bridge::adjacency_matrix()</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
+<p>Bivand R. <em>et al.</em> (2022) spdep: Spatial dependence, weighting schemes, and statistics. R package version 1.2-4, <a href="https://CRAN.R-project.org/package=spdep" class="external-link">https://CRAN.R-project.org/package=spdep</a>.</p>
 <p>Blanchet F. G., Legendre P. &amp; Borcard D. (2008) Modelling directional spatial processes in ecological data. <strong>Ecological Modelling</strong>, 215, 325-336. doi: <a href="https://doi.org/10.1016/j.ecolmodel.2008.04.001" class="external-link">10.1016/j.ecolmodel.2008.04.001</a>.</p>
 <p>Dray S., Legendre P. &amp; Peres-Neto P. R. (2006) Spatial modelling: a comprehensive framework for principal coordinate analysis of neighbour matrices (PCNM). <strong>Ecological Modelling</strong>, 196, 483-493. doi: <a href="https://doi.org/10.1016/j.ecolmodel.2006.02.015" class="external-link">10.1016/j.ecolmodel.2006.02.015</a>.</p>
+<p>Dray S. <em>et al.</em> (2022) adespatial: Multivariate Multiscale Spatial Analysis. R package version 0.3-16, <a href="https://CRAN.R-project.org/package=adespatial" class="external-link">https://CRAN.R-project.org/package=adespatial</a>.</p>
 </div>
   </div>
 
