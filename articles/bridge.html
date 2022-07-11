@@ -382,7 +382,9 @@
 <div class="section level2">
 <h2 id="connectivity-matrix">Connectivity matrix<a class="anchor" aria-label="anchor" href="#connectivity-matrix"></a>
 </h2>
-<p>We can convert the edges list to a connectivity matrix (also called adjacency matrix) by using the function <code><a href="../reference/adjacency_matrix.html">adjacency_matrix()</a></code>.</p>
+<p>We can convert the edges list to a connectivity matrix (also called adjacency matrix) by using the function <code><a href="../reference/adjacency_matrix.html">adjacency_matrix()</a></code>. A connectivity matrix is a matrix of dimensions <code>n x n</code>, where <code>n</code> is the number of nodes indicating the presence of an edge between two nodes (noted as <code>1</code>) or the absence of edge (noted as <code>0</code>).</p>
+<p><br></p>
+<p>The function <code><a href="../reference/adjacency_matrix.html">adjacency_matrix()</a></code> only requires the edges list as argument.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Create list of edges ----</span></span>
 <span><span class="va">adour_edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/edges_list.html">edges_list</a></span><span class="op">(</span><span class="va">adour_nodes</span>, degree <span class="op">=</span> <span class="fl">1</span>, directed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -451,7 +453,7 @@
 <code>weight</code>, the Euclidean distance between the two nodes</li>
 </ul>
 <p><br></p>
-<p>Note that is the units of the coordinates system are in degrees, the Great Circle distance will be used instead. See the documentation of the function <code><a href="../reference/distance_euclidean.html">distance_euclidean()</a></code> for further detail.</p>
+<p>Note that if the units of the coordinates system are in degrees (geodetic coordinates), the Great Circle distance will be used instead. See the documentation of the function <code><a href="../reference/distance_euclidean.html">distance_euclidean()</a></code> for further detail.</p>
 <p><br></p>
 </div>
 <div class="section level4">
@@ -478,7 +480,25 @@
 <div class="section level3">
 <h3 id="edges-weighting-matrix">Edges weighting matrix<a class="anchor" aria-label="anchor" href="#edges-weighting-matrix"></a>
 </h3>
-<p>…</p>
+<p>An edges weighting matrix is a matrix of dimensions <code>n x n</code>, where <code>n</code> is the number of nodes (sites). This matrix contains the weight values of edges and is a simple transposition of the <code>data.frame</code> created either by <code><a href="../reference/distance_euclidean.html">distance_euclidean()</a></code> or by <code><a href="../reference/distance_along.html">distance_along()</a></code>.</p>
+<p><br></p>
+<p>Let’s create this edges weighting matrix for our network.</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Edges weighting matrix ----</span></span>
+<span><span class="va">adour_edges_weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/edges_weight_matrix.html">edges_weight_matrix</a></span><span class="op">(</span><span class="va">adour_dists</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">adour_edges_weights</span><span class="op">)</span></span>
+<span><span class="co">#&gt;        S-01   S-02   S-03   S-04  S-05  S-06  S-07  S-08   S-09   S-10</span></span>
+<span><span class="co">#&gt; S-01      0  12278  23920  33207 47775 65641 76744 90281 101266 124743</span></span>
+<span><span class="co">#&gt; S-02  12278      0  11735  21299 35803 53534 64465 78044  89279 114045</span></span>
+<span><span class="co">#&gt; S-03  23920  11735      0   9786 24126 41799 52964 66790  78654 105473</span></span>
+<span><span class="co">#&gt; S-04  33207  21299   9786      0 14568 32502 44679 58974  71865 101213</span></span>
+<span><span class="co">#&gt; S-05  47775  35803  24126  14568     0 18023 31308 46019  60142  92665</span></span>
+<span><span class="co">#&gt; S-06  65641  53534  41799  32502 18023     0 15573 30181  45827  82009</span></span>
+<span><span class="co">#&gt; S-07  76744  64465  52964  44679 31308 15573     0 14834  30259  67179</span></span>
+<span><span class="co">#&gt; S-08  90281  78044  66790  58974 46019 30181 14834     0  16478  55448</span></span>
+<span><span class="co">#&gt; S-09 101266  89279  78654  71865 60142 45827 30259 16478      0  39509</span></span>
+<span><span class="co">#&gt; S-10 124743 114045 105473 101213 92665 82009 67179 55448  39509      0</span></span></code></pre></div>
+<p>Note that this matrix must have the same dimensions as the connectivity matrix.</p>
 <p><br></p>
 </div>
 <div class="section level3">
