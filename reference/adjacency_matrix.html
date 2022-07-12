@@ -181,44 +181,44 @@ of nodes.</p>
 <span class="r-in"><span><span class="co"># Get adjacency matrix (remove upper triangle) ----</span></span></span>
 <span class="r-in"><span><span class="fu">adjacency_matrix</span><span class="op">(</span><span class="va">adour_edges</span>, upper <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      S-01 S-02 S-03 S-04 S-05 S-06 S-07 S-08 S-09 S-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-01    1   NA   NA   NA   NA   NA   NA   NA   NA   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-02    1    1   NA   NA   NA   NA   NA   NA   NA   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-03    0    1    1   NA   NA   NA   NA   NA   NA   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-04    0    0    1    1   NA   NA   NA   NA   NA   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-05    0    0    0    1    1   NA   NA   NA   NA   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-06    0    0    0    0    1    1   NA   NA   NA   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-07    0    0    0    0    0    1    1   NA   NA   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-08    0    0    0    0    0    0    1    1   NA   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-09    0    0    0    0    0    0    0    1    1   NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-01    1    0    0    0    0    0    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-02    1    1    0    0    0    0    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-03    0    1    1    0    0    0    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-04    0    0    1    1    0    0    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-05    0    0    0    1    1    0    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-06    0    0    0    0    1    1    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-07    0    0    0    0    0    1    1    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-08    0    0    0    0    0    0    1    1    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-09    0    0    0    0    0    0    0    1    1    0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> S-10    0    0    0    0    0    0    0    0    1    1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get adjacency matrix (remove lower triangle) ----</span></span></span>
 <span class="r-in"><span><span class="fu">adjacency_matrix</span><span class="op">(</span><span class="va">adour_edges</span>, lower <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      S-01 S-02 S-03 S-04 S-05 S-06 S-07 S-08 S-09 S-10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> S-01    1    1    0    0    0    0    0    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-02   NA    1    1    0    0    0    0    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-03   NA   NA    1    1    0    0    0    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-04   NA   NA   NA    1    1    0    0    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-05   NA   NA   NA   NA    1    1    0    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-06   NA   NA   NA   NA   NA    1    1    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-07   NA   NA   NA   NA   NA   NA    1    1    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-08   NA   NA   NA   NA   NA   NA   NA    1    1    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-09   NA   NA   NA   NA   NA   NA   NA   NA    1    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-10   NA   NA   NA   NA   NA   NA   NA   NA   NA    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-02    0    1    1    0    0    0    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-03    0    0    1    1    0    0    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-04    0    0    0    1    1    0    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-05    0    0    0    0    1    1    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-06    0    0    0    0    0    1    1    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-07    0    0    0    0    0    0    1    1    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-08    0    0    0    0    0    0    0    1    1    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-09    0    0    0    0    0    0    0    0    1    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-10    0    0    0    0    0    0    0    0    0    1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get adjacency matrix (remove diagonal) ----</span></span></span>
 <span class="r-in"><span><span class="fu">adjacency_matrix</span><span class="op">(</span><span class="va">adour_edges</span>, diag <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      S-01 S-02 S-03 S-04 S-05 S-06 S-07 S-08 S-09 S-10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-01   NA    1    0    0    0    0    0    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-02    1   NA    1    0    0    0    0    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-03    0    1   NA    1    0    0    0    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-04    0    0    1   NA    1    0    0    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-05    0    0    0    1   NA    1    0    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-06    0    0    0    0    1   NA    1    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-07    0    0    0    0    0    1   NA    1    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-08    0    0    0    0    0    0    1   NA    1    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-09    0    0    0    0    0    0    0    1   NA    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S-10    0    0    0    0    0    0    0    0    1   NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-01    0    1    0    0    0    0    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-02    1    0    1    0    0    0    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-03    0    1    0    1    0    0    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-04    0    0    1    0    1    0    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-05    0    0    0    1    0    1    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-06    0    0    0    0    1    0    1    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-07    0    0    0    0    0    1    0    1    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-08    0    0    0    0    0    0    1    0    1    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-09    0    0    0    0    0    0    0    1    0    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S-10    0    0    0    0    0    0    0    0    1    0</span>
 </code></pre></div>
     </div>
   </div>
