@@ -79,8 +79,10 @@
 
     
     
-<p>The aim of the package <code>bridge</code> is to provide tools to work with directed (asymetric) spatial networks. It allows users to easily create and visualize network objects, like nodes and edges lists, connectivity matrix, edges weighting matrix, spatial weight matrix, nodes by edges matrix, etc. These objects can be used later in spatial multivariate analyses: Moran’s Eigenvector Maps (MEM, Dray <em>et al.</em> 2006) and Asymetric Eigenvector Maps (AEM, Blanchet <em>et al.</em> 2008) available in the package <a href="https://cran.r-project.org/package=adespatial" class="external-link"><code>adespatial</code></a> (Dray <em>et al.</em> 2022).</p>
+<p>The aim of the package <code>bridge</code> is to provide tools to work with directed (asymetric) spatial networks. It allows users to easily create and visualize network objects, like nodes and edges lists, connectivity matrix, edges weighting matrix, spatial weight matrix/vector, nodes by edges matrix, etc. These objects can be used later in spatial multivariate analyses: Moran’s Eigenvector Maps (MEM, Dray <em>et al.</em> 2006) and Asymetric Eigenvector Maps (AEM, Blanchet <em>et al.</em> 2008) available in the package <a href="https://cran.r-project.org/package=adespatial" class="external-link"><code>adespatial</code></a> (Dray <em>et al.</em> 2022).</p>
 <p>This package has been developed for the <a href="https://www.fondationbiodiversite.fr/en/about-the-foundation/le-cesab/" class="external-link">FRB-CESAB</a> working group <a href="https://www.fondationbiodiversite.fr/en/the-frb-in-action/programs-and-projects/le-cesab/bridge/" class="external-link">Bridge</a> that aims to better understand the role of local and regional environmental factors in shaping the taxonomic and functional diversity of plant communities established along river corridors, roadside corridors and cultivated field margins.</p>
+<p><br></p>
+<p>This vignette shows only the usage of the package <code>bridge</code> with <strong>directed spatial network</strong>.</p>
 <p><br></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/frbcesab/bridge" class="external-link">"bridge"</a></span><span class="op">)</span></span>
@@ -218,14 +220,9 @@
 </div>
 </div>
 <div class="section level2">
-<h2 id="nodes-and-edges">Nodes and Edges<a class="anchor" aria-label="anchor" href="#nodes-and-edges"></a>
+<h2 id="nodes-list">Nodes list<a class="anchor" aria-label="anchor" href="#nodes-list"></a>
 </h2>
-<p>The first information to extract from our spatial network is 1) the list of nodes and 2) the list of edges (links) between nodes.</p>
-<p><br></p>
-<div class="section level3">
-<h3 id="nodes-list">Nodes list<a class="anchor" aria-label="anchor" href="#nodes-list"></a>
-</h3>
-<p>First, let’s identify the <strong>nodes list</strong>, i.e. a vector of unique <strong>ordered</strong> sites labels.</p>
+<p>Let’s identify the <strong>nodes list</strong>, i.e. a vector of unique <strong>ordered</strong> sites labels.</p>
 <p><br></p>
 <p><strong>Important:</strong> as the sites have a direction (along the Adour river, from upstream to downstream), the order of the sites must be found in the sites labels.</p>
 <p>For instance, in the Adour sites dataset, sites are labelled as <strong>S-01</strong>, <strong>S-02</strong>, …, <strong>S-10</strong>. This means that the most upstream site is <strong>S-01</strong> and the most downstream is <strong>S-10</strong>.</p>
@@ -251,9 +248,9 @@
 <span><span class="co">#&gt;  [1] "S-01" "S-02" "S-03" "S-04" "S-05" "S-06" "S-07" "S-08" "S-09" "S-10"</span></span></code></pre></div>
 <p><br></p>
 </div>
-<div class="section level3">
-<h3 id="edges-list">Edges list<a class="anchor" aria-label="anchor" href="#edges-list"></a>
-</h3>
+<div class="section level2">
+<h2 id="edges-list">Edges list<a class="anchor" aria-label="anchor" href="#edges-list"></a>
+</h2>
 <p>From this nodes list, we can create an <strong>edges list</strong>, i.e. a table describing links between nodes. Several methods exist to identify spatial neighbors and most of them are available in the package <a href="https://cran.r-project.org/package=spdep" class="external-link"><code>spdep</code></a> (Bivand <em>et al.</em> 2022).</p>
 <p><br></p>
 <p>Here we implement our own method to detect spatial neighbors based sites labels and a degree of neighborhood. As our sites are ordered along the Adour river, if we use a degree <strong>1</strong> of neighborhood, a site will be linked to the first next site (downstream) and also to the first previous site (upstream). If we use a degree <strong>2</strong> of neighborhood, a site will be linked to the two next sites (downstream) and also to the two previous sites (upstream). And so on.</p>
@@ -322,10 +319,6 @@
 <span><span class="co">#&gt; 8     E-8    1 S-08 S-09</span></span>
 <span><span class="co">#&gt; 9     E-9    1 S-09 S-10</span></span></code></pre></div>
 <p><br></p>
-</div>
-<div class="section level3">
-<h3 id="visualizing-edges">Visualizing edges<a class="anchor" aria-label="anchor" href="#visualizing-edges"></a>
-</h3>
 <p>The package <code>bridge</code> provides a convenient function to convert this edges list table to an <code>sf</code> object of type <code>LINESTRING</code>: <code><a href="../reference/edges_to_sf.html">edges_to_sf()</a></code>.</p>
 <p><br></p>
 <p>Let’s convert the edges list to a spatial object.</p>
@@ -378,11 +371,12 @@
 <p><img src="bridge_files/figure-html/map-adour-edges-3-1.png" width="80%" style="display: block; margin: auto;"></p>
 <p><br></p>
 </div>
-</div>
 <div class="section level2">
 <h2 id="connectivity-matrix">Connectivity matrix<a class="anchor" aria-label="anchor" href="#connectivity-matrix"></a>
 </h2>
 <p>We can convert the edges list to a connectivity matrix (also called adjacency matrix) by using the function <code><a href="../reference/adjacency_matrix.html">adjacency_matrix()</a></code>. A connectivity matrix is a matrix of dimensions <code>n x n</code>, where <code>n</code> is the number of nodes indicating the presence of an edge between two nodes (noted as <code>1</code>) or the absence of edge (noted as <code>0</code>).</p>
+<p><br></p>
+<p><strong>Note:</strong> this object is useless to worl with AEM, but can useful to check the edges list.</p>
 <p><br></p>
 <p>The function <code><a href="../reference/adjacency_matrix.html">adjacency_matrix()</a></code> only requires the edges list as argument.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
@@ -418,20 +412,53 @@
 <p><br></p>
 </div>
 <div class="section level2">
-<h2 id="spatial-weights">Spatial weights<a class="anchor" aria-label="anchor" href="#spatial-weights"></a>
+<h2 id="nodes-by-edges-matrix">Nodes-by-edges matrix<a class="anchor" aria-label="anchor" href="#nodes-by-edges-matrix"></a>
 </h2>
-<p>The package <code>bridge</code> also provides some useful functions to compute spatial weights required by MEM and AEM methods.</p>
+<p>The first object required by AEM is the nodes-by-edges matrix, i.e. a matrix of dimensions <code>n x k</code>, where <code>n</code> is the number of nodes (in rows) and <code>k</code> the number of edges (in columns). This matrix represents the presence of a link influencing a site, directly or indirectly.</p>
 <p><br></p>
-<div class="section level3">
-<h3 id="distances">Distances<a class="anchor" aria-label="anchor" href="#distances"></a>
-</h3>
-<p>The simplest way to create spatial weights is to compute distances between pairs of nodes. Two methods are implemented in <code>bridge</code>: the Euclidean distance and the distance according to the shape of the river.</p>
-<p><br></p>
-<div class="section level4">
-<h4 id="euclidean-distance">Euclidean distance<a class="anchor" aria-label="anchor" href="#euclidean-distance"></a>
-</h4>
-<p>The Euclidean distance, a straightforward metric to compute distances between pairs of nodes, is implemented in the function <code><a href="../reference/distance_euclidean.html">distance_euclidean()</a></code>. This function only requires the coordinates of sites (object <code>sf</code>) and will compute distances between each possible pairs of sites.</p>
+<p>The function <code><a href="../reference/nodes_by_edges_matrix.html">nodes_by_edges_matrix()</a></code> of the package <code>bridge</code> is an alternative of the function <code>aem.build.binary()</code> of the package <code>adespatial</code>. This function creates the same output but works in a different way: it’s only based on nodes labels (not on spatial coordinates). In addition, the function <code><a href="../reference/nodes_by_edges_matrix.html">nodes_by_edges_matrix()</a></code> adds labels to nodes and edges.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Create nodes-by-edges matrix ----</span></span>
+<span><span class="va">adour_edges_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nodes_by_edges_matrix.html">nodes_by_edges_matrix</a></span><span class="op">(</span><span class="va">adour_edges</span><span class="op">)</span></span>
+<span><span class="va">adour_edges_mat</span></span>
+<span><span class="co">#&gt; $se.mat</span></span>
+<span><span class="co">#&gt;      E-01 E-02 E-03 E-04 E-05 E-06 E-07 E-08 E-09 E-10</span></span>
+<span><span class="co">#&gt; S-01    1    0    0    0    0    0    0    0    0    0</span></span>
+<span><span class="co">#&gt; S-02    1    1    0    0    0    0    0    0    0    0</span></span>
+<span><span class="co">#&gt; S-03    1    1    1    0    0    0    0    0    0    0</span></span>
+<span><span class="co">#&gt; S-04    1    1    1    1    0    0    0    0    0    0</span></span>
+<span><span class="co">#&gt; S-05    1    1    1    1    1    0    0    0    0    0</span></span>
+<span><span class="co">#&gt; S-06    1    1    1    1    1    1    0    0    0    0</span></span>
+<span><span class="co">#&gt; S-07    1    1    1    1    1    1    1    0    0    0</span></span>
+<span><span class="co">#&gt; S-08    1    1    1    1    1    1    1    1    0    0</span></span>
+<span><span class="co">#&gt; S-09    1    1    1    1    1    1    1    1    1    0</span></span>
+<span><span class="co">#&gt; S-10    1    1    1    1    1    1    1    1    1    1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $edges</span></span>
+<span><span class="co">#&gt;      from   to</span></span>
+<span><span class="co">#&gt; E-01    0 S-01</span></span>
+<span><span class="co">#&gt; E-02 S-01 S-02</span></span>
+<span><span class="co">#&gt; E-03 S-02 S-03</span></span>
+<span><span class="co">#&gt; E-04 S-03 S-04</span></span>
+<span><span class="co">#&gt; E-05 S-04 S-05</span></span>
+<span><span class="co">#&gt; E-06 S-05 S-06</span></span>
+<span><span class="co">#&gt; E-07 S-06 S-07</span></span>
+<span><span class="co">#&gt; E-08 S-07 S-08</span></span>
+<span><span class="co">#&gt; E-09 S-08 S-09</span></span>
+<span><span class="co">#&gt; E-10 S-09 S-10</span></span></code></pre></div>
+<p>This function returns a list with the following elements:</p>
+<ul>
+<li>
+<code>se.mat</code>: the nodes-by-edges matrix of dimensions <code>n x k</code>, where <code>n</code> is the number of nodes and <code>k</code> the number of edges (including the edge between the fictitious origin and the first site);</li>
+<li>
+<code>edges</code>: a <code>data.frame</code> of edges list.</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="edges-weights-euclidean-distance">Edges weights (Euclidean distance)<a class="anchor" aria-label="anchor" href="#edges-weights-euclidean-distance"></a>
+</h2>
+<p>The Euclidean distance, a straightforward metric to compute distances between pairs of nodes, is implemented in the function <code><a href="../reference/distance_euclidean.html">distance_euclidean()</a></code>. This function only requires the coordinates of sites (object <code>sf</code>) and will compute distances between each possible pairs of sites.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Euclidean distance between pairs of sites ----</span></span>
 <span><span class="va">adour_dists</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/distance_euclidean.html">distance_euclidean</a></span><span class="op">(</span><span class="va">adour_sites_sf</span><span class="op">)</span></span>
 <span></span>
@@ -450,18 +477,18 @@
 <li>
 <code>to</code>, the label of the second node</li>
 <li>
-<code>weight</code>, the Euclidean distance between the two nodes</li>
+<code>weight</code>, the Euclidean distance between two nodes</li>
 </ul>
 <p><br></p>
 <p>Note that if the units of the coordinates system are in degrees (geodetic coordinates), the Great Circle distance will be used instead. See the documentation of the function <code><a href="../reference/distance_euclidean.html">distance_euclidean()</a></code> for further detail.</p>
 <p><br></p>
 </div>
-<div class="section level4">
-<h4 id="distance-along-river">Distance along river<a class="anchor" aria-label="anchor" href="#distance-along-river"></a>
-</h4>
-<p>The function <code><a href="../reference/distance_along.html">distance_along()</a></code> implements of more complex way to compute distances between pairs of sites by taking into account the shape of the river. The distance between two sites will be equal to the length of river segment between these two sites.</p>
+<div class="section level2">
+<h2 id="edges-weights-distance-along-river">Edges weights (distance along river)<a class="anchor" aria-label="anchor" href="#edges-weights-distance-along-river"></a>
+</h2>
+<p>The function <code><a href="../reference/distance_along.html">distance_along()</a></code> implements a more complex way to compute distances between pairs of sites by taking into account the shape of the river. The distance between two sites will be equal to the length of river segment between these two sites.</p>
 <p>To create segments, this function will sample points on the river and select the two points of the river that are the nearest from the two sites. These two points will define the endpoints of the segment.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Distance along the river between pairs of sites ----</span></span>
 <span><span class="fu"><a href="../reference/distance_along.html">distance_along</a></span><span class="op">(</span><span class="va">adour_sites_sf</span>, <span class="va">adour_river</span>, density <span class="op">=</span> <span class="fl">0.01</span>, type <span class="op">=</span> <span class="st">"regular"</span><span class="op">)</span></span></code></pre></div>
 <p>This function uses two specific arguments:</p>
@@ -476,37 +503,23 @@
 <p>The returned object has the same format as in <code><a href="../reference/distance_euclidean.html">distance_euclidean()</a></code>.</p>
 <p><br></p>
 </div>
-</div>
-<div class="section level3">
-<h3 id="edges-weighting-matrix">Edges weighting matrix<a class="anchor" aria-label="anchor" href="#edges-weighting-matrix"></a>
-</h3>
-<p>An edges weighting matrix is a matrix of dimensions <code>n x n</code>, where <code>n</code> is the number of nodes (sites). This matrix contains the weight values of edges and is a simple transposition of the <code>data.frame</code> created either by <code><a href="../reference/distance_euclidean.html">distance_euclidean()</a></code> or by <code><a href="../reference/distance_along.html">distance_along()</a></code>.</p>
+<div class="section level2">
+<h2 id="edges-weights-vector">Edges weights vector<a class="anchor" aria-label="anchor" href="#edges-weights-vector"></a>
+</h2>
+<p>The second object (optional) requires by AEM is the edges weights vector. It is a simple numeric vector giving the weight of each edge. Here we are going to use the Euclidean distance an edge weight.</p>
 <p><br></p>
-<p>Let’s create this edges weighting matrix for our network.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Edges weighting matrix ----</span></span>
-<span><span class="va">adour_edges_weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/edges_weight_matrix.html">edges_weight_matrix</a></span><span class="op">(</span><span class="va">adour_dists</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">adour_edges_weights</span><span class="op">)</span></span>
-<span><span class="co">#&gt;        S-01   S-02   S-03   S-04  S-05  S-06  S-07  S-08   S-09   S-10</span></span>
-<span><span class="co">#&gt; S-01      0  12278  23920  33207 47775 65641 76744 90281 101266 124743</span></span>
-<span><span class="co">#&gt; S-02  12278      0  11735  21299 35803 53534 64465 78044  89279 114045</span></span>
-<span><span class="co">#&gt; S-03  23920  11735      0   9786 24126 41799 52964 66790  78654 105473</span></span>
-<span><span class="co">#&gt; S-04  33207  21299   9786      0 14568 32502 44679 58974  71865 101213</span></span>
-<span><span class="co">#&gt; S-05  47775  35803  24126  14568     0 18023 31308 46019  60142  92665</span></span>
-<span><span class="co">#&gt; S-06  65641  53534  41799  32502 18023     0 15573 30181  45827  82009</span></span>
-<span><span class="co">#&gt; S-07  76744  64465  52964  44679 31308 15573     0 14834  30259  67179</span></span>
-<span><span class="co">#&gt; S-08  90281  78044  66790  58974 46019 30181 14834     0  16478  55448</span></span>
-<span><span class="co">#&gt; S-09 101266  89279  78654  71865 60142 45827 30259 16478      0  39509</span></span>
-<span><span class="co">#&gt; S-10 124743 114045 105473 101213 92665 82009 67179 55448  39509      0</span></span></code></pre></div>
-<p>Note that this matrix must have the same dimensions as the connectivity matrix.</p>
+<p>The function <code><a href="../reference/edges_weights_vector.html">edges_weights_vector()</a></code> of the package <code>bridge</code> takes the output of the function <code><a href="../reference/distance_euclidean.html">distance_euclidean()</a></code> (or <code><a href="../reference/distance_along.html">distance_along()</a></code>) to create this edges weights vector.</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Edges weights vector ----</span></span>
+<span><span class="va">adour_weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/edges_weights_vector.html">edges_weights_vector</a></span><span class="op">(</span><span class="va">adour_edges_mat</span>, <span class="va">adour_dists</span><span class="op">)</span></span>
+<span><span class="va">adour_weights</span></span>
+<span><span class="co">#&gt;       E-01       E-02       E-03       E-04       E-05       E-06       E-07 </span></span>
+<span><span class="co">#&gt; 158037.200  12278.287  11735.397   9786.038  14567.619  18023.365  15572.540 </span></span>
+<span><span class="co">#&gt;       E-08       E-09       E-10 </span></span>
+<span><span class="co">#&gt;  14834.325  16477.810  39509.300</span></span></code></pre></div>
 <p><br></p>
-</div>
-<div class="section level3">
-<h3 id="spatial-weights-matrix">Spatial weights matrix<a class="anchor" aria-label="anchor" href="#spatial-weights-matrix"></a>
-</h3>
-<p>…</p>
+<p>Now we can run an AEM as follow: <code>adespatial::aem(adour_edges_mat, weight = adour_weights)</code></p>
 <p><br></p>
-</div>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
