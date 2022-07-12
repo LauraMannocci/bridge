@@ -80,7 +80,7 @@ where <code>max(w)</code> is the maximal weight in the matrix.</p>
     <h2>Value</h2>
     
 
-<p>A <code>data.frame</code> with the weights values added to the edges list.</p>
+<p>An edges weights <code>vector</code>.</p>
     </div>
 
     <div id="ref-examples">
@@ -107,17 +107,10 @@ where <code>max(w)</code> is the maximal weight in the matrix.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create Edges weights vector ----</span></span></span>
 <span class="r-in"><span><span class="fu">edges_weights_vector</span><span class="op">(</span><span class="va">adour_matrix</span>, <span class="va">adour_dists</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      from   to     weight</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> E-01    0 S-01 158037.200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> E-02 S-01 S-02  12278.287</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> E-03 S-02 S-03  11735.397</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> E-04 S-03 S-04   9786.038</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> E-05 S-04 S-05  14567.619</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> E-06 S-05 S-06  18023.365</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> E-07 S-06 S-07  15572.540</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> E-08 S-07 S-08  14834.325</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> E-09 S-08 S-09  16477.810</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> E-10 S-09 S-10  39509.300</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       E-01       E-02       E-03       E-04       E-05       E-06       E-07 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 158037.200  12278.287  11735.397   9786.038  14567.619  18023.365  15572.540 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       E-08       E-09       E-10 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  14834.325  16477.810  39509.300 </span>
 </code></pre></div>
     </div>
   </div>
